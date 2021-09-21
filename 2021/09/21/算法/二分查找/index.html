@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+
+<html lang="zh-CN">
+
+<head>
+    
+    <title>二分查找 - 深红的游戏博客</title>
+    <meta charset="UTF-8">
+    <meta name="description" content="深红的游戏博客">
+    <meta name="keywords" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5">
+    
+    
+
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+    <meta name="description" content="二分查找前言  &amp;emsp;&amp;emsp;虽然说二分查找是个最基础的算法之一，但是当我去leetcode刷题的时候，发现自己还是太菜了。。。很多题完全看不出来二分的解法，然后边界条件也不清楚。然后我这几天花了点时间去刷了leetcode《二分查找》的题，悟了些经验，然后总结归纳一下吧。推荐大家点击那个红色的链接试一试，个人感觉对于理解学习还是很有效的。   &amp;emsp;&amp;emsp;一下介绍的三个模板">
+<meta property="og:type" content="article">
+<meta property="og:title" content="二分查找">
+<meta property="og:url" content="http://example.com/2021/09/21/%E7%AE%97%E6%B3%95/%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE/index.html">
+<meta property="og:site_name" content="深红的游戏博客">
+<meta property="og:description" content="二分查找前言  &amp;emsp;&amp;emsp;虽然说二分查找是个最基础的算法之一，但是当我去leetcode刷题的时候，发现自己还是太菜了。。。很多题完全看不出来二分的解法，然后边界条件也不清楚。然后我这几天花了点时间去刷了leetcode《二分查找》的题，悟了些经验，然后总结归纳一下吧。推荐大家点击那个红色的链接试一试，个人感觉对于理解学习还是很有效的。   &amp;emsp;&amp;emsp;一下介绍的三个模板">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://pic.leetcode-cn.com/1617713599-kwmUHj-image.png">
+<meta property="article:published_time" content="2021-09-20T16:00:00.000Z">
+<meta property="article:modified_time" content="2021-09-21T07:12:37.813Z">
+<meta property="article:author" content="深红的游戏博客">
+<meta property="article:tag" content="算法">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://pic.leetcode-cn.com/1617713599-kwmUHj-image.png">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/combine/npm/highlight.js@9.15.8/styles/atom-one-dark.css,npm/justifiedGallery@3.8.1/dist/css/justifiedGallery.min.css,gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css,npm/hexo-theme-nexmoe@latest/source/lib/mdui_043tiny/css/mdui.css,npm/hexo-theme-nexmoe@latest/source/lib/iconfont/iconfont.css?v=233" crossorigin>
+    <link rel="stylesheet" href="/css/style.css?v=1632208422577">
+     
+    
+    <link rel="stylesheet" href="/lib/iconfont/iconfont.css?v=1632208422577">
+    
+        <link rel="stylesheet" href="/custom.css">
+    
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body class="mdui-drawer-body-left">
+    
+    <div id="nexmoe-background">
+        <div class="nexmoe-bg" style="background-image: url(https://cdn.jsdelivr.net/gh/nexmoe/nexmoe.github.io@latest/images/cover/5c3aec85a4343.jpg)"></div>
+        <div class="mdui-appbar mdui-shadow-0">
+            <div class="mdui-toolbar">
+                <a mdui-drawer="{target: '#drawer', swipe: true}" title="menu" class="mdui-btn mdui-btn-icon mdui-ripple"><i class="mdui-icon nexmoefont icon-menu"></i></a>
+                <div class="mdui-toolbar-spacer"></div>
+                <!--<a href="javascript:;" class="mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">search</i></a>-->
+                <a href="/" title="深红的游戏博客" class="mdui-btn mdui-btn-icon"><img src="https://avatars.githubusercontent.com/u/70889911?s=400&amp;u=9cc5b46920578881f846a1158d686d06b29fb5fd&amp;v=4#%20%E7%BD%91%E7%AB%99%20Logo" alt="深红的游戏博客"></a>
+            </div>
+        </div>
+    </div>
+    <div id="nexmoe-header">
+        <div class="nexmoe-drawer mdui-drawer" id="drawer">
+    <div class="nexmoe-avatar mdui-ripple">
+        <a href="/" title="深红的游戏博客">
+            <img src="https://avatars.githubusercontent.com/u/70889911?s=400&amp;u=9cc5b46920578881f846a1158d686d06b29fb5fd&amp;v=4#%20%E7%BD%91%E7%AB%99%20Logo" alt="深红的游戏博客" alt="深红的游戏博客">
+        </a>
+    </div>
+    <div class="nexmoe-count">
+        <div><span>文章</span>3</div>
+        <div><span>标签</span>4</div>
+        <div><span>分类</span>3</div>
+    </div>
+    <div class="nexmoe-list mdui-list" mdui-collapse="{accordion: true}">
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple false" href="/" title="回到首页">
+            <i class="mdui-list-item-icon nexmoefont icon-home"></i>
+            <div class="mdui-list-item-content">
+                回到首页
+            </div>
+        </a>
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple false" href="/archive.html" title="文章归档">
+            <i class="mdui-list-item-icon nexmoefont icon-container"></i>
+            <div class="mdui-list-item-content">
+                文章归档
+            </div>
+        </a>
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple false" href="/about.html" title="关于博客">
+            <i class="mdui-list-item-icon nexmoefont icon-info-circle"></i>
+            <div class="mdui-list-item-content">
+                关于博客
+            </div>
+        </a>
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple false" href="/PY.html" title="我的朋友">
+            <i class="mdui-list-item-icon nexmoefont icon-unorderedlist"></i>
+            <div class="mdui-list-item-content">
+                我的朋友
+            </div>
+        </a>
+        
+    </div>
+    <aside id="nexmoe-sidebar">
+    
+    <div class="nexmoe-widget-wrap">
+    <div class="nexmoe-widget nexmoe-search">
+         
+            <form id="search_form" action_e="https://cn.bing.com/search?q=site:nexmoe.com" onsubmit="return search();">
+                <label><input id="search_value" name="q" type="search" placeholder="搜索"></label>
+            </form>
+         
+    </div>
+</div>
+    
+    <div class="nexmoe-widget-wrap">
+    <div class="nexmoe-widget nexmoe-social">
+        <a class="mdui-ripple" href="https://space.bilibili.com/33809215" target="_blank" mdui-tooltip="{content: '哔哩哔哩'}" style="color: rgb(231, 106, 141);background-color: rgba(231, 106, 141, .15);">
+            <i class="nexmoefont icon-bilibili"></i>
+        </a><a class="mdui-ripple" href="https://github.com/Johnny7255/" target="_blank" mdui-tooltip="{content: 'GitHub'}" style="color: rgb(25, 23, 23);background-color: rgba(25, 23, 23, .15);">
+            <i class="nexmoefont icon-github"></i>
+        </a><a class="mdui-ripple" href="https://leetcode-cn.com/u/projekt-red/" target="_blank" mdui-tooltip="{content: 'LeetCode'}" style="color: rgb(25, 23, 23);background-color: rgba(25, 23, 23, .15);">
+            <i class="nexmoefont icon-tag-fill"></i>
+        </a>
+    </div>
+</div>
+    
+    
+  <div class="nexmoe-widget-wrap">
+    <h3 class="nexmoe-widget-title">文章分类</h3>
+    <div class="nexmoe-widget">
+
+      <ul class="category-list">
+
+        
+
+
+        
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/算法/">算法</a>
+          <span class="category-list-count">1</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/记事/">记事</a>
+          <span class="category-list-count">1</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/设计模式/">设计模式</a>
+          <span class="category-list-count">1</span>
+        </li>
+
+        
+      </ul>
+
+    </div>
+  </div>
+
+
+    
+    
+  <div class="nexmoe-widget-wrap">
+    <div id="randomtagcloud" class="nexmoe-widget tagcloud nexmoe-rainbow">
+      <a href="/tags/%E5%8D%9A%E5%AE%A2%E4%BF%A1%E6%81%AF/" style="font-size: 10px;">博客信息</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 10px;">算法</a> <a href="/tags/%E8%AE%B0%E4%BA%8B/" style="font-size: 10px;">记事</a> <a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" style="font-size: 10px;">设计模式</a>
+    </div>
+    
+  </div>
+
+    
+    
+  <div class="nexmoe-widget-wrap">
+    <h3 class="nexmoe-widget-title">文章归档</h3>
+    <div class="nexmoe-widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/">2021</a><span class="archive-list-count">3</span></li></ul>
+    </div>
+  </div>
+
+
+
+    
+</aside>
+    <div class="nexmoe-copyright">
+        &copy; 2021 深红的游戏博客
+        Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+        & <a href="https://github.com/theme-nexmoe/hexo-theme-nexmoe" target="_blank">Nexmoe</a>
+        <br><a target="_blank" href="https://www.upyun.com/?utm_source=lianmeng&utm_medium=referral"><img src="https://i.dawnlab.me/c0268c1e6cfd0863d6ba35be1575941a.png" width="150px"></a><script data-ad-client="ca-pub-2058306854838448" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    </div>
+</div><!-- .nexmoe-drawer -->
+    </div>
+    <div id="nexmoe-content">
+        <div class="nexmoe-primary">
+            <div class="nexmoe-post">
+
+  <article>
+      
+          <div class="nexmoe-post-cover" style="padding-bottom: 21.428571428571427%;"> 
+              <img data-src="https://img0.baidu.com/it/u=2954633937,2805201863&fm=26&fmt=auto" data-sizes="auto" alt="二分查找" class="lazyload">
+              <h1>二分查找</h1>
+          </div>
+      
+      
+      <div class="nexmoe-post-meta nexmoe-rainbow" style="margin:10px 0!important;">
+    <a><i class="nexmoefont icon-calendar-fill"></i>2021年09月21日</a>
+    <a><i class="nexmoefont icon-areachart"></i>1.8k 字</a>
+    <a><i class="nexmoefont icon-time-circle-fill"></i>大概 7 分钟</a>
+</div>
+
+      
+
+      <h1 id="二分查找"><a href="#二分查找" class="headerlink" title="二分查找"></a>二分查找</h1><h4 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h4><p>  &emsp;&emsp;虽然说二分查找是个最基础的算法之一，但是当我去leetcode刷题的时候，发现自己还是太菜了。。。很多题完全看不出来二分的解法，然后边界条件也不清楚。然后我这几天花了点时间去刷了leetcode<a target="_blank" rel="noopener" href="https://leetcode-cn.com/leetbook/detail/binary-search/">《二分查找》</a>的题，悟了些经验，然后总结归纳一下吧。推荐大家点击那个红色的链接试一试，个人感觉对于理解学习还是很有效的。</p>
+<p>  &emsp;&emsp;一下介绍的三个模板在很多情况都能使用，但是请记住他们只是模板，在具体使用它们的时候应该随机应变，而不是认为按照这个写就万事大吉了。<br>  (如有侵权，请联系qq:1754283508，我会及时删除文章)</p>
+<h2 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h2><ol>
+<li><a href="#简介">简介</a></li>
+<li><a href="#坑">坑</a></li>
+<li><a href="#模板一：查询特定值元素">模板一：查询特定值元素</a></li>
+<li><a href="#模板二：查找边界">模板二：查找边界</a></li>
+<li><a href="#模板三：访问边界">模板三：访问边界</a></li>
+<li><a href="#变式题目推荐">变式题目推荐</a></li>
+</ol>
+<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>&emsp;&emsp;二分法是最基础的算法之一，其基本思想是将<b>有一定规律且连续</b>的序列范围（比如排序好的数组）一分为二，然后用我们每次找中间的值进行判断，根据判断的结果抛弃答案不可能存在的区间，而去未被抛弃的范围寻找。重复这个行为，直到找到想要的答案，或者能够判断出答案不存在。</p>
+<p>&emsp;&emsp;时间复杂度为：O(logN) <del>我不推了这个网上一搜一大堆，其实也好证</del></p>
+<h2 id="坑"><a href="#坑" class="headerlink" title="坑"></a>坑</h2><p>&emsp;&emsp;因为我想大家看文章的顺序是从上往下，所以我就把这个放在前面点的位置了。</p>
+<ul>
+<li><p><b>溢出</b><br>&emsp;&emsp;二分找中间值，我相信很多同学会想当然的用(left+right)/2，但是很遗憾告诉你。如果你的right与left的和超过了当前类型的最大值，那么“中间值”会变成负数，被报废了。那怎么办呢？int到long这种中间储存确实是一个主意，但是转型会浪费空间。更加推荐处理方式是 left+(right-left)/2。</p>
+</li>
+<li><p><b>位运算的执行顺序</b><br>&emsp;&emsp;/2这种东西是不是可以优化一下成&gt;&gt;1？确实，它们结果是等效的，但是后者因为是位运算，所以会比除法快。于是你很愉快地写了left+(right-left)&gt;&gt;1。恭喜你，你现在得不到正确答案了。这是因为，位运算的执行顺序是在+-法之后，所以left+(right-left)&gt;&gt;1实际结果是(left+right-left)&gt;&gt;1。所以你应该写成left+((right-left)&gt;&gt;1)。</p>
+</li>
+<li><p><b>错误的位运算</b>&emsp;&emsp;<br>&emsp;&emsp;&gt;&gt;1与/2结果等效，但是&gt;&gt;&gt;1会使得符号位变成0，就是会让它所有结果都为正数，举个例子,对于java的int类型，-2&gt;&gt;1结果是-1,-2&gt;&gt;&gt;1的结果却是2147483647。</p>
+</li>
+<li><p><b>问题需要是有一定规律的！！！！</b></p>
+</li>
+</ul>
+<h2 id="模板一：查询特定值元素"><a href="#模板一：查询特定值元素" class="headerlink" title="模板一：查询特定值元素"></a>模板一：查询特定值元素</h2><p>&emsp;&emsp;这个是二分查找最基本的模板，最常用于查找某个特定值的元素。也是我们学习的最简单的模板。</p>
+<blockquote>
+<p><img data-fancybox="gallery" data-sizes="auto" data-src="https://pic.leetcode-cn.com/1617713599-kwmUHj-image.png" alt="哇耦" class="lazyload"> <del>这句话时刻提醒我，我是five</del></p>
+</blockquote>
+<p><b>使用情景</b></p>
+<ol>
+<li>判断时不需要保留左边与右边元素，不满足条件的边界元素应该被直接舍弃。</li>
+<li>不需要后处理，找到了就返回答案，没找到就结束。</li>
+</ol>
+<p><b>代码形式如下</b></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"> </span><br><span class="line"> <span class="function"><span class="keyword">int</span> <span class="title">binarySearch</span><span class="params">(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> target)</span><span class="comment">//返回目标索引</span></span></span><br><span class="line"><span class="function"> </span>&#123;</span><br><span class="line">  Arrays.sort(nums);<span class="comment">//预处理，使数组有序</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span>(nums == <span class="keyword">null</span> || nums.length == <span class="number">0</span>) &#123;<span class="keyword">return</span> -<span class="number">1</span>;&#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">int</span> left = <span class="number">0</span>, right = nums.length - <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">while</span>(left &lt;= right)</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="keyword">int</span> mid = left + (right - left) / <span class="number">2</span>;</span><br><span class="line">    <span class="keyword">if</span>(nums[mid] == target)&#123; <span class="keyword">return</span> mid; &#125;<span class="comment">//找到就返回</span></span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span>(nums[mid] &lt; target) &#123; left = mid + <span class="number">1</span>; &#125;</span><br><span class="line">    <span class="keyword">else</span> &#123; right = mid - <span class="number">1</span>; &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> -<span class="number">1</span>;<span class="comment">//没找到</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><b>区别语句</b></p>
+<ol>
+<li>边界变化：right=mid-1, left=mid+1</li>
+<li>终止条件：left&lt;=right</li>
+</ol>
+<p><b>推荐题目</b></p>
+<ol>
+<li><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/sqrtx/">《x的平方根》 简单</a></li>
+<li><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/guess-number-higher-or-lower/">《猜数字大小》 简单</a></li>
+<li><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/search-in-rotated-sorted-array/">《搜索旋转排序数组》 中等</a>&emsp;(它也是变式)</li>
+</ol>
+<h2 id="模板二：查找边界"><a href="#模板二：查找边界" class="headerlink" title="模板二：查找边界"></a>模板二：查找边界</h2><p>&emsp;&emsp;这个模板是用于在判断值的时候，需要访问当前索引或者右侧邻居的情况。</p>
+<p>&emsp;&emsp;什么意思呢？</p>
+<p>&emsp;&emsp;比如给我们一个非降序的数组{1,2,2,2,2,5,8},现在让我们找最后一个2出现的位置，那么我们使用二分法访问的时候，我们需要判断这个数是不是2以及这个数右边的值是不是2。如果让我们寻找第一个2，则稍微修改部分边界值变化逻辑即可。</p>
+<p><b>使用情景</b></p>
+<ol>
+<li>寻找边界的元素。</li>
+<li>要求考虑重复元素。</li>
+<li>查找最接近（远离）的元素。</li>
+</ol>
+<p><b>代码形式如下</b></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">binarySearch</span><span class="params">(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> target)</span><span class="comment">//返回目标索引</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="keyword">if</span>(nums == <span class="keyword">null</span> || nums.length == <span class="number">0</span>) &#123;<span class="keyword">return</span> -<span class="number">1</span>;&#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">//right和LeetCode的有差别，没必要像LeetCode那样直接用数组长度作为右边界</span></span><br><span class="line">  <span class="keyword">int</span> left = <span class="number">0</span>, right = nums.length - <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">while</span>(left &lt; right)<span class="comment">//实际结束条件 left==right</span></span><br><span class="line">  &#123;</span><br><span class="line">    <span class="keyword">int</span> mid = left + (right - left) / <span class="number">2</span>;</span><br><span class="line">    <span class="keyword">if</span>(nums[mid] == target)&#123; <span class="keyword">return</span> mid; &#125;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span>(nums[mid] &lt; target) &#123; left = mid + <span class="number">1</span>; &#125;</span><br><span class="line">    <span class="keyword">else</span> &#123; right = mid; &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span>(nums[left] == target) <span class="keyword">return</span> left;<span class="comment">//后处理，检查是否为目标</span></span><br><span class="line">  <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><b>区别语句</b></p>
+<ol>
+<li>边界变化：right=mid, left=mid+1</li>
+<li>终止条件：left&lt;right</li>
+<li>后处理：nums[left]==target</li>
+</ol>
+<p><b>推荐题目</b></p>
+<ol>
+<li><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/first-bad-version/">《第一个错误的版本》 简单</a></li>
+<li><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/find-peak-element/">《寻找峰值》 中等</a></li>
+<li><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/search-in-rotated-sorted-array-ii/">《搜索旋转排序数组II》 中等</a></li>
+</ol>
+<h2 id="模板三：访问边界"><a href="#模板三：访问边界" class="headerlink" title="模板三：访问边界"></a>模板三：访问边界</h2><p>&emsp;&emsp;这个是需要同时访问左右两个边界的写法，比较适合查找某个最接近的值。目前个人感觉用的比较少，大部分时候可以用前两个模板代替。期待大家之后可以补充。</p>
+<p><b>使用情景</b></p>
+<ol>
+<li>用于查找近似值</li>
+</ol>
+<p><b>代码形式如下</b></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">binarySearch</span><span class="params">(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> target)</span> </span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (nums == <span class="keyword">null</span> || nums.length == <span class="number">0</span>)  <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">int</span> left = <span class="number">0</span>, right = nums.length - <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">while</span> (left + <span class="number">1</span> &lt; right)<span class="comment">//实际结束条件 left+1==right</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">int</span> mid = left + (right - left) / <span class="number">2</span>;</span><br><span class="line">        <span class="keyword">if</span> (nums[mid] == target) </span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">return</span> mid;</span><br><span class="line">        &#125; </span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span> (nums[mid] &lt; target) </span><br><span class="line">        &#123;</span><br><span class="line">            left = mid;</span><br><span class="line">        &#125; </span><br><span class="line">        <span class="keyword">else</span> </span><br><span class="line">        &#123;</span><br><span class="line">            right = mid;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//后处理，判断两个边界谁满足要求</span></span><br><span class="line">    <span class="keyword">if</span>(nums[left] == target) <span class="keyword">return</span> left;</span><br><span class="line">    <span class="keyword">if</span>(nums[right] == target) <span class="keyword">return</span> right;</span><br><span class="line">    <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><b>区别语句</b></p>
+<ol>
+<li>边界变化：right=mid, left=mid</li>
+<li>终止条件：left+1&lt;right</li>
+<li>后处理：nums[left]==target和nums[right]==target</li>
+</ol>
+<p><b>推荐题目</b></p>
+<ol>
+<li><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/first-bad-version/">《第一个错误的版本》 简单</a></li>
+<li><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/find-peak-element/">《寻找峰值》 中等</a></li>
+</ol>
+<h2 id="变式题目推荐"><a href="#变式题目推荐" class="headerlink" title="变式题目推荐"></a>变式题目推荐</h2><p>&emsp;&emsp;二分法最核心的内容就是把问题的范围一分为二，而以上的模板只是针对某些情况的一些经验性的归纳。有的题它套用的模板会特别隐晦，或者没法套用模板，但是我们仍然可以用二分法的思想解决。<br><b>推荐题目</b></p>
+<ol>
+<li><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/intersection-of-two-arrays-ii/">《两个数组交集II》 简单</a></li>
+<li><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/powx-n/solution/powx-n-by-leetcode-solution/">《Pow(x, n)》 中等</a></li>
+<li><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/median-of-two-sorted-arrays/">《寻找两个正序数组的中位数》 困难</a></li>
+</ol>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><ul>
+<li>[1] <a target="_blank" rel="noopener" href="https://leetcode-cn.com/leetbook/detail/binary-search/">《LeetBook/二分查找》</a></li>
+</ul>
+
+  </article>
+
+  
+      
+    <div class="nexmoe-post-copyright">
+        <strong>本文作者：</strong>深红的游戏博客<br>
+        <strong>本文链接：</strong><a href="http://example.com/2021/09/21/%E7%AE%97%E6%B3%95/%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE/" title="http:&#x2F;&#x2F;example.com&#x2F;2021&#x2F;09&#x2F;21&#x2F;%E7%AE%97%E6%B3%95&#x2F;%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE&#x2F;" target="_blank" rel="noopener">http:&#x2F;&#x2F;example.com&#x2F;2021&#x2F;09&#x2F;21&#x2F;%E7%AE%97%E6%B3%95&#x2F;%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE&#x2F;</a><br>
+        
+            <strong>版权声明：</strong>本文采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/cn/deed.zh" target="_blank">CC BY-NC-SA 3.0 CN</a> 协议进行许可
+        
+    </div>
+
+
+  
+  
+  <div class="nexmoe-post-meta nexmoe-rainbow">
+    
+        <a class="nexmoefont icon-appstore-fill -link" href="/categories/%E7%AE%97%E6%B3%95/">算法</a>
+    
+    
+        <a class="nexmoefont icon-tag-fill -none-link" href="/tags/%E7%AE%97%E6%B3%95/" rel="tag">算法</a>
+    
+</div>
+
+  
+      <div class="nexmoe-post-footer">
+          <section class="nexmoe-comment">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@latest/dist/gitalk.min.css">
+<div id="gitalk"></div>
+<script src="https://cdn.jsdelivr.net/npm/gitalk@latest/dist/gitalk.min.js"></script>
+<script type="text/javascript">
+    var gitalk = new Gitalk({
+        clientID: '80b2453b6d5f37ad6225',
+        clientSecret: '43e99fa852795c9a7b3eb924b2558c64b84bbdeb',
+        id: window.location.pathname,
+        repo: 'nexmoe.github.io',
+        owner: 'nexmoe',
+        admin: 'nexmoe'
+    })
+    gitalk.render('gitalk')
+</script>
+</section>
+      </div>
+  
+</div>
+            <div class="nexmoe-post-right">
+              <div class="nexmoe-fixed">
+                  <div class="nexmoe-tool"> 
+                    
+                      
+                        
+                          
+                          
+                              <button class="mdui-fab catalog" style="overflow:unset;">
+                                  <i class="nexmoefont icon-i-catalog"></i>
+                                  <div class="nexmoe-toc">
+                                      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE"><span class="toc-number">1.</span> <span class="toc-text">二分查找</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-number">1.0.0.1.</span> <span class="toc-text">前言</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%9B%AE%E5%BD%95"><span class="toc-number">1.1.</span> <span class="toc-text">目录</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AE%80%E4%BB%8B"><span class="toc-number">1.2.</span> <span class="toc-text">简介</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9D%91"><span class="toc-number">1.3.</span> <span class="toc-text">坑</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A8%A1%E6%9D%BF%E4%B8%80%EF%BC%9A%E6%9F%A5%E8%AF%A2%E7%89%B9%E5%AE%9A%E5%80%BC%E5%85%83%E7%B4%A0"><span class="toc-number">1.4.</span> <span class="toc-text">模板一：查询特定值元素</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A8%A1%E6%9D%BF%E4%BA%8C%EF%BC%9A%E6%9F%A5%E6%89%BE%E8%BE%B9%E7%95%8C"><span class="toc-number">1.5.</span> <span class="toc-text">模板二：查找边界</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A8%A1%E6%9D%BF%E4%B8%89%EF%BC%9A%E8%AE%BF%E9%97%AE%E8%BE%B9%E7%95%8C"><span class="toc-number">1.6.</span> <span class="toc-text">模板三：访问边界</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%98%E5%BC%8F%E9%A2%98%E7%9B%AE%E6%8E%A8%E8%8D%90"><span class="toc-number">1.7.</span> <span class="toc-text">变式题目推荐</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83"><span class="toc-number">1.8.</span> <span class="toc-text">参考</span></a></li></ol></li></ol>
+                                  </div>
+                              </button>
+                          
+                          
+                      
+                    
+                      <a href="#nexmoe-content" class="toc-link" aria-label="回到顶部" title="top"><button class="mdui-fab mdui-ripple"><i class="nexmoefont icon-caret-top"></i></button></a>
+                  </div>
+              </div>
+            </div>
+        </div>
+    </div>
+     
+    <div id="nexmoe-search-space">
+        <div class="search-container">
+            <div class="search-header">
+                <div class="search-input-container">
+                    <input class="search-input" type="text" placeholder="搜索" oninput="sinput();">
+                </div>
+                <a class="search-close" onclick="sclose();">×</a>
+            </div>
+            <div class="search-body"></div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/combine/npm/lazysizes@5.1.0/lazysizes.min.js,npm/mdui@0.4.3/dist/js/mdui.min.js?v=1"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+
+ 
+
+<script async src="/js/app.js?v=1632208422599"></script>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/js/jquery.justifiedGallery.min.js"></script>
+<script>
+	$(".justified-gallery").justifiedGallery({
+		rowHeight: 160,
+		margins: 10,
+	});
+</script>
+
+
+    
+
+
+
+
+
+</body>
+
+</html>
