@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+
+<html lang="zh-CN">
+
+<head>
+    
+    <title>原型模式 - 深红的游戏博客</title>
+    <meta charset="UTF-8">
+    <meta name="description" content="深红的游戏博客">
+    <meta name="keywords" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5">
+    
+    
+
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+    <meta name="description" content="原型模式目录 GOF定义 概念 情景描述 代码结构特点 原型模式写法 浅拷贝 深拷贝   注意事项 参考  GOF定义&amp;emsp;&amp;emsp;指定使用的现有的原型实例创建特定类，通过复制现有的原型实例来创建新对象。 概念&amp;emsp;&amp;emsp;通常来说，从头开始创建一个新的对象是比较复杂的。而使用原型模式，我们是通过复制或者克隆一个现有的对象来创建一个新的对象，而减少从头开始创建对象的开销。而我们">
+<meta property="og:type" content="article">
+<meta property="og:title" content="原型模式">
+<meta property="og:url" content="http://example.com/2021/10/01/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E5%8E%9F%E5%9E%8B%E6%A8%A1%E5%BC%8F/index.html">
+<meta property="og:site_name" content="深红的游戏博客">
+<meta property="og:description" content="原型模式目录 GOF定义 概念 情景描述 代码结构特点 原型模式写法 浅拷贝 深拷贝   注意事项 参考  GOF定义&amp;emsp;&amp;emsp;指定使用的现有的原型实例创建特定类，通过复制现有的原型实例来创建新对象。 概念&amp;emsp;&amp;emsp;通常来说，从头开始创建一个新的对象是比较复杂的。而使用原型模式，我们是通过复制或者克隆一个现有的对象来创建一个新的对象，而减少从头开始创建对象的开销。而我们">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://img2.baidu.com/it/u=50402626,956238913&fm=26&fmt=auto">
+<meta property="article:published_time" content="2021-09-30T16:00:00.000Z">
+<meta property="article:modified_time" content="2021-10-01T15:41:11.618Z">
+<meta property="article:author" content="深红的游戏博客">
+<meta property="article:tag" content="设计模式">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://img2.baidu.com/it/u=50402626,956238913&fm=26&fmt=auto">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/combine/npm/highlight.js@9.15.8/styles/atom-one-dark.css,npm/justifiedGallery@3.8.1/dist/css/justifiedGallery.min.css,gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css,npm/hexo-theme-nexmoe@latest/source/lib/mdui_043tiny/css/mdui.css,npm/hexo-theme-nexmoe@latest/source/lib/iconfont/iconfont.css?v=233" crossorigin>
+    <link rel="stylesheet" href="/css/style.css?v=1633102929730">
+     
+    
+    <link rel="stylesheet" href="/lib/iconfont/iconfont.css?v=1633102929730">
+    
+        <link rel="stylesheet" href="/custom.css">
+    
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body class="mdui-drawer-body-left">
+    
+    <div id="nexmoe-background">
+        <div class="nexmoe-bg" style="background-image: url(https://cdn.jsdelivr.net/gh/nexmoe/nexmoe.github.io@latest/images/cover/5c3aec85a4343.jpg)"></div>
+        <div class="mdui-appbar mdui-shadow-0">
+            <div class="mdui-toolbar">
+                <a mdui-drawer="{target: '#drawer', swipe: true}" title="menu" class="mdui-btn mdui-btn-icon mdui-ripple"><i class="mdui-icon nexmoefont icon-menu"></i></a>
+                <div class="mdui-toolbar-spacer"></div>
+                <!--<a href="javascript:;" class="mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">search</i></a>-->
+                <a href="/" title="深红的游戏博客" class="mdui-btn mdui-btn-icon"><img src="https://avatars.githubusercontent.com/u/70889911?s=400&amp;u=9cc5b46920578881f846a1158d686d06b29fb5fd&amp;v=4#%20%E7%BD%91%E7%AB%99%20Logo" alt="深红的游戏博客"></a>
+            </div>
+        </div>
+    </div>
+    <div id="nexmoe-header">
+        <div class="nexmoe-drawer mdui-drawer" id="drawer">
+    <div class="nexmoe-avatar mdui-ripple">
+        <a href="/" title="深红的游戏博客">
+            <img src="https://avatars.githubusercontent.com/u/70889911?s=400&amp;u=9cc5b46920578881f846a1158d686d06b29fb5fd&amp;v=4#%20%E7%BD%91%E7%AB%99%20Logo" alt="深红的游戏博客" alt="深红的游戏博客">
+        </a>
+    </div>
+    <div class="nexmoe-count">
+        <div><span>文章</span>4</div>
+        <div><span>标签</span>4</div>
+        <div><span>分类</span>3</div>
+    </div>
+    <div class="nexmoe-list mdui-list" mdui-collapse="{accordion: true}">
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple false" href="/" title="回到首页">
+            <i class="mdui-list-item-icon nexmoefont icon-home"></i>
+            <div class="mdui-list-item-content">
+                回到首页
+            </div>
+        </a>
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple false" href="/archive.html" title="文章归档">
+            <i class="mdui-list-item-icon nexmoefont icon-container"></i>
+            <div class="mdui-list-item-content">
+                文章归档
+            </div>
+        </a>
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple false" href="/about.html" title="关于博客">
+            <i class="mdui-list-item-icon nexmoefont icon-info-circle"></i>
+            <div class="mdui-list-item-content">
+                关于博客
+            </div>
+        </a>
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple false" href="/PY.html" title="我的朋友">
+            <i class="mdui-list-item-icon nexmoefont icon-unorderedlist"></i>
+            <div class="mdui-list-item-content">
+                我的朋友
+            </div>
+        </a>
+        
+    </div>
+    <aside id="nexmoe-sidebar">
+    
+    <div class="nexmoe-widget-wrap">
+    <div class="nexmoe-widget nexmoe-search">
+         
+            <form id="search_form" action_e="https://cn.bing.com/search?q=site:nexmoe.com" onsubmit="return search();">
+                <label><input id="search_value" name="q" type="search" placeholder="搜索"></label>
+            </form>
+         
+    </div>
+</div>
+    
+    <div class="nexmoe-widget-wrap">
+    <div class="nexmoe-widget nexmoe-social">
+        <a class="mdui-ripple" href="https://space.bilibili.com/33809215" target="_blank" mdui-tooltip="{content: '哔哩哔哩'}" style="color: rgb(231, 106, 141);background-color: rgba(231, 106, 141, .15);">
+            <i class="nexmoefont icon-bilibili"></i>
+        </a><a class="mdui-ripple" href="https://github.com/Johnny7255/" target="_blank" mdui-tooltip="{content: 'GitHub'}" style="color: rgb(25, 23, 23);background-color: rgba(25, 23, 23, .15);">
+            <i class="nexmoefont icon-github"></i>
+        </a><a class="mdui-ripple" href="https://leetcode-cn.com/u/projekt-red/" target="_blank" mdui-tooltip="{content: 'LeetCode'}" style="color: rgb(25, 23, 23);background-color: rgba(25, 23, 23, .15);">
+            <i class="nexmoefont icon-tag-fill"></i>
+        </a>
+    </div>
+</div>
+    
+    
+  <div class="nexmoe-widget-wrap">
+    <h3 class="nexmoe-widget-title">文章分类</h3>
+    <div class="nexmoe-widget">
+
+      <ul class="category-list">
+
+        
+
+
+        
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/算法/">算法</a>
+          <span class="category-list-count">1</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/记事/">记事</a>
+          <span class="category-list-count">1</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/设计模式/">设计模式</a>
+          <span class="category-list-count">2</span>
+        </li>
+
+        
+      </ul>
+
+    </div>
+  </div>
+
+
+    
+    
+  <div class="nexmoe-widget-wrap">
+    <div id="randomtagcloud" class="nexmoe-widget tagcloud nexmoe-rainbow">
+      <a href="/tags/%E5%8D%9A%E5%AE%A2%E4%BF%A1%E6%81%AF/" style="font-size: 10px;">博客信息</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 10px;">算法</a> <a href="/tags/%E8%AE%B0%E4%BA%8B/" style="font-size: 10px;">记事</a> <a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" style="font-size: 20px;">设计模式</a>
+    </div>
+    
+  </div>
+
+    
+    
+  <div class="nexmoe-widget-wrap">
+    <h3 class="nexmoe-widget-title">文章归档</h3>
+    <div class="nexmoe-widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/">2021</a><span class="archive-list-count">4</span></li></ul>
+    </div>
+  </div>
+
+
+
+    
+</aside>
+    <div class="nexmoe-copyright">
+        &copy; 2021 深红的游戏博客
+        Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+        & <a href="https://github.com/theme-nexmoe/hexo-theme-nexmoe" target="_blank">Nexmoe</a>
+        <br><a target="_blank" href="https://www.upyun.com/?utm_source=lianmeng&utm_medium=referral"><img src="https://i.dawnlab.me/c0268c1e6cfd0863d6ba35be1575941a.png" width="150px"></a><script data-ad-client="ca-pub-2058306854838448" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    </div>
+</div><!-- .nexmoe-drawer -->
+    </div>
+    <div id="nexmoe-content">
+        <div class="nexmoe-primary">
+            <div class="nexmoe-post">
+
+  <article>
+      
+          <div class="nexmoe-post-cover" style="padding-bottom: NaN%;"> 
+              <img data-src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2F5b0988e595225.cdn.sohucs.com%2Fimages%2F20180828%2F9ae7fbce82e34a878c7670df00d97151.jpeg&refer=http%3A%2F%2F5b0988e595225.cdn.sohucs.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1635683048&t=ac78356ad2c1625f80a92de63b5b115b" data-sizes="auto" alt="原型模式" class="lazyload">
+              <h1>原型模式</h1>
+          </div>
+      
+      
+      <div class="nexmoe-post-meta nexmoe-rainbow" style="margin:10px 0!important;">
+    <a><i class="nexmoefont icon-calendar-fill"></i>2021年10月01日</a>
+    <a><i class="nexmoefont icon-areachart"></i>1.5k 字</a>
+    <a><i class="nexmoefont icon-time-circle-fill"></i>大概 6 分钟</a>
+</div>
+
+      
+
+      <h1 id="原型模式"><a href="#原型模式" class="headerlink" title="原型模式"></a>原型模式</h1><h2 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h2><ol>
+<li><a href="#GOF定义">GOF定义</a></li>
+<li><a href="#概念">概念</a></li>
+<li><a href="#情景描述">情景描述</a></li>
+<li><a href="#代码结构特点">代码结构特点</a></li>
+<li><a href="#原型模式写法">原型模式写法</a><ul>
+<li><a href="#浅拷贝">浅拷贝</a></li>
+<li><a href="#深拷贝">深拷贝</a></li>
+</ul>
+</li>
+<li><a href="#注意事项">注意事项</a></li>
+<li><a href="#参考">参考</a></li>
+</ol>
+<h3 id="GOF定义"><a href="#GOF定义" class="headerlink" title="GOF定义"></a>GOF定义</h3><p>&emsp;&emsp;指定使用的现有的原型实例创建特定类，通过复制现有的原型实例来创建新对象。</p>
+<h3 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h3><p>&emsp;&emsp;通常来说，从头开始创建一个新的对象是比较复杂的。而使用原型模式，我们是通过复制或者克隆一个现有的对象来创建一个新的对象，而减少从头开始创建对象的开销。而我们可以通过简单的修改使对象有不同的变化。<br>&emsp;&emsp;实际上相对于复制与克隆，其最主要思想的是构造代码的复用。</p>
+<h3 id="情景描述"><a href="#情景描述" class="headerlink" title="情景描述"></a>情景描述</h3><p>&emsp;&emsp;你现在在做一个RPG游戏，你的游戏里面有许多类型怪物，它们有着不同的构造器，但是统一大类型的怪物它们有着相同的<b>特性与技能</b>，而它们与精英怪物的区别仅仅在于<b>属性</b>。如果每一种怪物你都重新写个类或者使用继承，那你的代码量出现不必要的杂糅。<br>&emsp;&emsp;现在你被指派去做哥布林小兵和哥布林大佬，而它们有属性的区别，并且哥布林大佬有个特殊武器。你已经写完了哥布林小兵的类，此时你可以选择 (a)直接写个哥布林大佬 (b)通过继承哥布林小兵来做个哥布林大佬 (c)直接在哥布林小兵的构造函数上动手脚<br>&emsp;&emsp;你会选c是吧，恭喜你，你悟了原型模式的精髓<del>你已经参悟了，快去实战吧</del>，一个对象可以生成与之有相似特性的其他对象。<br>&emsp;&emsp;其能够降低创建一个对象的开销来生成一个新的对象。<br>&emsp;&emsp;在你多种对象代码存在大量重复内容导致代码量冗杂时，以及可以通过共享某些属性以节约代码量时，可以考虑原型模式的使用。</p>
+<blockquote>
+<p>类图实例<br>  <img data-fancybox="gallery" data-sizes="auto" data-src="https://img2.baidu.com/it/u=50402626,956238913&fm=26&fmt=auto" width = "300" height = "200" alt="类图" class="lazyload"></p>
+</blockquote>
+<h3 id="代码结构特点"><a href="#代码结构特点" class="headerlink" title="代码结构特点"></a>代码结构特点</h3><ul>
+<li><h4 id="其首先有个原型"><a href="#其首先有个原型" class="headerlink" title="其首先有个原型"></a>其首先有个原型</h4>&emsp;&emsp; 原型就是个蛋糕胚，为了做一个与众不同的蛋糕，只需要使用固定的原料与工具，按照固定的方式做一个蛋糕胚，然后再针对性地修改蛋糕胚。换句话说，原型就是你某类对象的最基础的构造内容，或者最简单的实例。</li>
+<li><h4 id="你通过复用代码（拷贝对象）来制作一个新的对象"><a href="#你通过复用代码（拷贝对象）来制作一个新的对象" class="headerlink" title="你通过复用代码（拷贝对象）来制作一个新的对象"></a>你通过复用代码（拷贝对象）来制作一个新的对象</h4> &emsp;&emsp; 如同上文，全新的蛋糕就是在普通蛋糕胚的基础上稍加修改制作出来的。这家店不同蛋糕做蛋糕胚的工艺都是相同的，要让它们各不相同只需要对蛋糕胚进行针对性的修改。</li>
+</ul>
+<h3 id="原型模式写法"><a href="#原型模式写法" class="headerlink" title="原型模式写法"></a>原型模式写法</h3><ol>
+<li><h4 id="浅拷贝"><a href="#浅拷贝" class="headerlink" title="浅拷贝"></a>浅拷贝</h4>&emsp;&emsp; 浅拷贝是复制原有实例的值与引用的拷贝，然后创建一个新的对象，浅拷贝的对象有着相同引用。其可以减少创建新对象的开销。<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">class Monster</span><br><span class="line">&#123;</span><br><span class="line">  private int blood;</span><br><span class="line">  private string monsterName;</span><br><span class="line">  private Skill[] skills;</span><br><span class="line"></span><br><span class="line">  public Monster(int blood, string monsterName, Skill[] skills)</span><br><span class="line">  &#123;</span><br><span class="line">    this.blood = blood;</span><br><span class="line">    this.monsterName = monsterName;</span><br><span class="line">    this.skills = skills;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  public Monster Clone()</span><br><span class="line">  &#123;</span><br><span class="line">    //返回的新对象有着和当前对象相同的技能数组与名字</span><br><span class="line">    return new Monster(blood, monsterName, skills);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li><h4 id="深拷贝"><a href="#深拷贝" class="headerlink" title="深拷贝"></a>深拷贝</h4>&emsp;&emsp; 深拷贝相对于浅拷贝开销变大，因为要创建新的对象，但是能保证新创建的对象与原始对象这部分的内容相互独立。<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">class Monster</span><br><span class="line">&#123;</span><br><span class="line">  private int blood;</span><br><span class="line">  private string monsterName;</span><br><span class="line">  private Skill[] skills;</span><br><span class="line"></span><br><span class="line">  public Monster(int blood, string monsterName, Skill[] skills)</span><br><span class="line">  &#123;</span><br><span class="line">   this.blood = blood;</span><br><span class="line">   this.monsterName = monsterName;</span><br><span class="line">   this.skills = skills;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  public Monster Clone()</span><br><span class="line">  &#123;</span><br><span class="line">    //返回的新对象的技能数组与原对象相互独立，技能数组为深拷贝</span><br><span class="line">    int len = skills.Length;</span><br><span class="line">    Skill[] temp = new Skill[len];</span><br><span class="line">    for(int i=0;i&lt;len;i++)</span><br><span class="line">    &#123;</span><br><span class="line">      temp[i] = skills[i];</span><br><span class="line">    &#125;</span><br><span class="line">    return new Monster(blood, monsterName, temp);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h3></li>
+<li><b>克隆的对象包含其他对象引用时，慎用浅拷贝</b><br>&emsp;&emsp;当使用”=“赋值时，JAVA与C#并不会克隆一个对象，而是直接复制该对象的引用，这会导致克隆后的两个对象使用同一个对象。如果希望保持二者的独立，应当使用深拷贝处理。</li>
+<li><b>浅拷贝与深拷贝的选择，在于你是否希望某些属性之间的独立</b><br>&emsp;&emsp;对于不需要保持独立的对象属性，浅拷贝永远是优于深拷贝的，因为其能减少创建新对象的开销。而对于希望保持独立的对象属性使用深拷贝。<br>&emsp;&emsp;<b>注意，深浅拷贝是可以同时存在的。</b>举个例子，我现在有个虫巢类，其会孵化虫子，每只从里面出生的虫子都会回到它自己的巢穴。而地图上可以有多个虫巢，每一只虫子的血条都是独立的。这时候，为了简化虫子对象的创建，我们可以让同一个窝的虫子享有同一个家的属性，而我们需要创建它们的血条。此时我们就可以考虑浅拷贝虫巢，深拷贝血条。</li>
+<li><b>新对象无法超越原型的极限</b><br>&emsp;&emsp;原型模式是有极限的，其减少了创建一个新对象的开销，但是原型也限制了创建新对象的灵活性。比如你现在有个车的骨架，你只需要喷漆就可以得到一辆新车，但是你没法飞起来，除非你加装一个翅膀。</li>
+</ol>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><ul>
+<li>[1] 《Java Design Patterns》</li>
+<li>[2] 游戏编程模式</li>
+</ul>
+
+  </article>
+
+  
+      
+    <div class="nexmoe-post-copyright">
+        <strong>本文作者：</strong>深红的游戏博客<br>
+        <strong>本文链接：</strong><a href="http://example.com/2021/10/01/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E5%8E%9F%E5%9E%8B%E6%A8%A1%E5%BC%8F/" title="http:&#x2F;&#x2F;example.com&#x2F;2021&#x2F;10&#x2F;01&#x2F;%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F&#x2F;%E5%8E%9F%E5%9E%8B%E6%A8%A1%E5%BC%8F&#x2F;" target="_blank" rel="noopener">http:&#x2F;&#x2F;example.com&#x2F;2021&#x2F;10&#x2F;01&#x2F;%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F&#x2F;%E5%8E%9F%E5%9E%8B%E6%A8%A1%E5%BC%8F&#x2F;</a><br>
+        
+            <strong>版权声明：</strong>本文采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/cn/deed.zh" target="_blank">CC BY-NC-SA 3.0 CN</a> 协议进行许可
+        
+    </div>
+
+
+  
+  
+  <div class="nexmoe-post-meta nexmoe-rainbow">
+    
+        <a class="nexmoefont icon-appstore-fill -link" href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">设计模式</a>
+    
+    
+        <a class="nexmoefont icon-tag-fill -none-link" href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" rel="tag">设计模式</a>
+    
+</div>
+
+  
+      <div class="nexmoe-post-footer">
+          <section class="nexmoe-comment">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@latest/dist/gitalk.min.css">
+<div id="gitalk"></div>
+<script src="https://cdn.jsdelivr.net/npm/gitalk@latest/dist/gitalk.min.js"></script>
+<script type="text/javascript">
+    var gitalk = new Gitalk({
+        clientID: '80b2453b6d5f37ad6225',
+        clientSecret: '43e99fa852795c9a7b3eb924b2558c64b84bbdeb',
+        id: window.location.pathname,
+        repo: 'nexmoe.github.io',
+        owner: 'nexmoe',
+        admin: 'nexmoe'
+    })
+    gitalk.render('gitalk')
+</script>
+</section>
+      </div>
+  
+</div>
+            <div class="nexmoe-post-right">
+              <div class="nexmoe-fixed">
+                  <div class="nexmoe-tool"> 
+                    
+                      
+                        
+                          
+                          
+                              <button class="mdui-fab catalog" style="overflow:unset;">
+                                  <i class="nexmoefont icon-i-catalog"></i>
+                                  <div class="nexmoe-toc">
+                                      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%8E%9F%E5%9E%8B%E6%A8%A1%E5%BC%8F"><span class="toc-number">1.</span> <span class="toc-text">原型模式</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%9B%AE%E5%BD%95"><span class="toc-number">1.1.</span> <span class="toc-text">目录</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#GOF%E5%AE%9A%E4%B9%89"><span class="toc-number">1.1.1.</span> <span class="toc-text">GOF定义</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A6%82%E5%BF%B5"><span class="toc-number">1.1.2.</span> <span class="toc-text">概念</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%83%85%E6%99%AF%E6%8F%8F%E8%BF%B0"><span class="toc-number">1.1.3.</span> <span class="toc-text">情景描述</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81%E7%BB%93%E6%9E%84%E7%89%B9%E7%82%B9"><span class="toc-number">1.1.4.</span> <span class="toc-text">代码结构特点</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%85%B6%E9%A6%96%E5%85%88%E6%9C%89%E4%B8%AA%E5%8E%9F%E5%9E%8B"><span class="toc-number">1.1.4.1.</span> <span class="toc-text">其首先有个原型</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BD%A0%E9%80%9A%E8%BF%87%E5%A4%8D%E7%94%A8%E4%BB%A3%E7%A0%81%EF%BC%88%E6%8B%B7%E8%B4%9D%E5%AF%B9%E8%B1%A1%EF%BC%89%E6%9D%A5%E5%88%B6%E4%BD%9C%E4%B8%80%E4%B8%AA%E6%96%B0%E7%9A%84%E5%AF%B9%E8%B1%A1"><span class="toc-number">1.1.4.2.</span> <span class="toc-text">你通过复用代码（拷贝对象）来制作一个新的对象</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8E%9F%E5%9E%8B%E6%A8%A1%E5%BC%8F%E5%86%99%E6%B3%95"><span class="toc-number">1.1.5.</span> <span class="toc-text">原型模式写法</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%B5%85%E6%8B%B7%E8%B4%9D"><span class="toc-number">1.1.5.1.</span> <span class="toc-text">浅拷贝</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%B7%B1%E6%8B%B7%E8%B4%9D"><span class="toc-number">1.1.5.2.</span> <span class="toc-text">深拷贝</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9"><span class="toc-number">1.1.6.</span> <span class="toc-text">注意事项</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83"><span class="toc-number">1.2.</span> <span class="toc-text">参考</span></a></li></ol></li></ol>
+                                  </div>
+                              </button>
+                          
+                          
+                      
+                    
+                      <a href="#nexmoe-content" class="toc-link" aria-label="回到顶部" title="top"><button class="mdui-fab mdui-ripple"><i class="nexmoefont icon-caret-top"></i></button></a>
+                  </div>
+              </div>
+            </div>
+        </div>
+    </div>
+     
+    <div id="nexmoe-search-space">
+        <div class="search-container">
+            <div class="search-header">
+                <div class="search-input-container">
+                    <input class="search-input" type="text" placeholder="搜索" oninput="sinput();">
+                </div>
+                <a class="search-close" onclick="sclose();">×</a>
+            </div>
+            <div class="search-body"></div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/combine/npm/lazysizes@5.1.0/lazysizes.min.js,npm/mdui@0.4.3/dist/js/mdui.min.js?v=1"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+
+ 
+
+<script async src="/js/app.js?v=1633102929739"></script>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/js/jquery.justifiedGallery.min.js"></script>
+<script>
+	$(".justified-gallery").justifiedGallery({
+		rowHeight: 160,
+		margins: 10,
+	});
+</script>
+
+
+    
+
+
+
+
+
+</body>
+
+</html>
