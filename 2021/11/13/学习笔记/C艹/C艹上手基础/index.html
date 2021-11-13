@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+
+<html lang="zh-CN">
+
+<head>
+    
+    <title>C++入门基础 - 深红的游戏博客</title>
+    <meta charset="UTF-8">
+    <meta name="description" content="深红的游戏博客">
+    <meta name="keywords" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5">
+    
+    
+
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+    <meta name="description" content="CPP入门基础目录 CPP的结构特征 CPP的注释 CPP数据类型 CPP引用 CPP函数 CPP输入输出流 const关键字 内联函数 参考  CPP的结构特征&amp;emsp;&amp;emsp;面向对象程序包括类的声明部分与类的使用部分（方法等）。CPP的源程序拓展后缀为**.CPP**eg: 1234567class A&amp;#123;    private:       int a,b,c;&#x2F;&#x2F;类型A的成">
+<meta property="og:type" content="article">
+<meta property="og:title" content="C++入门基础">
+<meta property="og:url" content="http://example.com/2021/11/13/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/C%E8%89%B9/C%E8%89%B9%E4%B8%8A%E6%89%8B%E5%9F%BA%E7%A1%80/index.html">
+<meta property="og:site_name" content="深红的游戏博客">
+<meta property="og:description" content="CPP入门基础目录 CPP的结构特征 CPP的注释 CPP数据类型 CPP引用 CPP函数 CPP输入输出流 const关键字 内联函数 参考  CPP的结构特征&amp;emsp;&amp;emsp;面向对象程序包括类的声明部分与类的使用部分（方法等）。CPP的源程序拓展后缀为**.CPP**eg: 1234567class A&amp;#123;    private:       int a,b,c;&#x2F;&#x2F;类型A的成">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-11-12T16:00:00.000Z">
+<meta property="article:modified_time" content="2021-11-13T14:11:49.166Z">
+<meta property="article:author" content="深红的游戏博客">
+<meta property="article:tag" content="学习笔记">
+<meta property="article:tag" content="C艹面向对象编程">
+<meta name="twitter:card" content="summary">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/combine/npm/highlight.js@9.15.8/styles/atom-one-dark.css,npm/justifiedGallery@3.8.1/dist/css/justifiedGallery.min.css,gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css,npm/hexo-theme-nexmoe@latest/source/lib/mdui_043tiny/css/mdui.css,npm/hexo-theme-nexmoe@latest/source/lib/iconfont/iconfont.css?v=233" crossorigin>
+    <link rel="stylesheet" href="/css/style.css?v=1636812748545">
+     
+    
+    <link rel="stylesheet" href="/lib/iconfont/iconfont.css?v=1636812748545">
+    
+        <link rel="stylesheet" href="/custom.css">
+    
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body class="mdui-drawer-body-left">
+    
+    <div id="nexmoe-background">
+        <div class="nexmoe-bg" style="background-image: url(https://cdn.jsdelivr.net/gh/nexmoe/nexmoe.github.io@latest/images/cover/5c3aec85a4343.jpg)"></div>
+        <div class="mdui-appbar mdui-shadow-0">
+            <div class="mdui-toolbar">
+                <a mdui-drawer="{target: '#drawer', swipe: true}" title="menu" class="mdui-btn mdui-btn-icon mdui-ripple"><i class="mdui-icon nexmoefont icon-menu"></i></a>
+                <div class="mdui-toolbar-spacer"></div>
+                <!--<a href="javascript:;" class="mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">search</i></a>-->
+                <a href="/" title="深红的游戏博客" class="mdui-btn mdui-btn-icon"><img src="https://avatars.githubusercontent.com/u/70889911?s=400&amp;u=9cc5b46920578881f846a1158d686d06b29fb5fd&amp;v=4#%20%E7%BD%91%E7%AB%99%20Logo" alt="深红的游戏博客"></a>
+            </div>
+        </div>
+    </div>
+    <div id="nexmoe-header">
+        <div class="nexmoe-drawer mdui-drawer" id="drawer">
+    <div class="nexmoe-avatar mdui-ripple">
+        <a href="/" title="深红的游戏博客">
+            <img src="https://avatars.githubusercontent.com/u/70889911?s=400&amp;u=9cc5b46920578881f846a1158d686d06b29fb5fd&amp;v=4#%20%E7%BD%91%E7%AB%99%20Logo" alt="深红的游戏博客" alt="深红的游戏博客">
+        </a>
+    </div>
+    <div class="nexmoe-count">
+        <div><span>文章</span>6</div>
+        <div><span>标签</span>7</div>
+        <div><span>分类</span>6</div>
+    </div>
+    <div class="nexmoe-list mdui-list" mdui-collapse="{accordion: true}">
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple false" href="/" title="回到首页">
+            <i class="mdui-list-item-icon nexmoefont icon-home"></i>
+            <div class="mdui-list-item-content">
+                回到首页
+            </div>
+        </a>
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple false" href="/archive.html" title="文章归档">
+            <i class="mdui-list-item-icon nexmoefont icon-container"></i>
+            <div class="mdui-list-item-content">
+                文章归档
+            </div>
+        </a>
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple false" href="/about.html" title="关于博客">
+            <i class="mdui-list-item-icon nexmoefont icon-info-circle"></i>
+            <div class="mdui-list-item-content">
+                关于博客
+            </div>
+        </a>
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple false" href="/PY.html" title="我的朋友">
+            <i class="mdui-list-item-icon nexmoefont icon-unorderedlist"></i>
+            <div class="mdui-list-item-content">
+                我的朋友
+            </div>
+        </a>
+        
+    </div>
+    <aside id="nexmoe-sidebar">
+    
+    <div class="nexmoe-widget-wrap">
+    <div class="nexmoe-widget nexmoe-search">
+         
+            <form id="search_form" action_e="https://cn.bing.com/search?q=site:nexmoe.com" onsubmit="return search();">
+                <label><input id="search_value" name="q" type="search" placeholder="搜索"></label>
+            </form>
+         
+    </div>
+</div>
+    
+    <div class="nexmoe-widget-wrap">
+    <div class="nexmoe-widget nexmoe-social">
+        <a class="mdui-ripple" href="https://space.bilibili.com/33809215" target="_blank" mdui-tooltip="{content: '哔哩哔哩'}" style="color: rgb(231, 106, 141);background-color: rgba(231, 106, 141, .15);">
+            <i class="nexmoefont icon-bilibili"></i>
+        </a><a class="mdui-ripple" href="https://github.com/Johnny7255/" target="_blank" mdui-tooltip="{content: 'GitHub'}" style="color: rgb(25, 23, 23);background-color: rgba(25, 23, 23, .15);">
+            <i class="nexmoefont icon-github"></i>
+        </a><a class="mdui-ripple" href="https://leetcode-cn.com/u/projekt-red/" target="_blank" mdui-tooltip="{content: 'LeetCode'}" style="color: rgb(25, 23, 23);background-color: rgba(25, 23, 23, .15);">
+            <i class="nexmoefont icon-tag-fill"></i>
+        </a>
+    </div>
+</div>
+    
+    
+  <div class="nexmoe-widget-wrap">
+    <h3 class="nexmoe-widget-title">文章分类</h3>
+    <div class="nexmoe-widget">
+
+      <ul class="category-list">
+
+        
+
+
+        
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/学习笔记/C艹/">C艹</a>
+          <span class="category-list-count">1</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/学习笔记/">学习笔记</a>
+          <span class="category-list-count">1</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/数据结构/">数据结构</a>
+          <span class="category-list-count">1</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/算法/">算法</a>
+          <span class="category-list-count">1</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/记事/">记事</a>
+          <span class="category-list-count">1</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/设计模式/">设计模式</a>
+          <span class="category-list-count">2</span>
+        </li>
+
+        
+      </ul>
+
+    </div>
+  </div>
+
+
+    
+    
+  <div class="nexmoe-widget-wrap">
+    <div id="randomtagcloud" class="nexmoe-widget tagcloud nexmoe-rainbow">
+      <a href="/tags/C%E8%89%B9%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%BC%96%E7%A8%8B/" style="font-size: 10px;">C艹面向对象编程</a> <a href="/tags/%E5%8D%9A%E5%AE%A2%E4%BF%A1%E6%81%AF/" style="font-size: 10px;">博客信息</a> <a href="/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" style="font-size: 10px;">学习笔记</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84-%E7%AE%97%E6%B3%95/" style="font-size: 10px;">数据结构 算法</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 10px;">算法</a> <a href="/tags/%E8%AE%B0%E4%BA%8B/" style="font-size: 10px;">记事</a> <a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" style="font-size: 20px;">设计模式</a>
+    </div>
+    
+  </div>
+
+    
+    
+  <div class="nexmoe-widget-wrap">
+    <h3 class="nexmoe-widget-title">文章归档</h3>
+    <div class="nexmoe-widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/">2021</a><span class="archive-list-count">6</span></li></ul>
+    </div>
+  </div>
+
+
+
+    
+</aside>
+    <div class="nexmoe-copyright">
+        &copy; 2021 深红的游戏博客
+        Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+        & <a href="https://github.com/theme-nexmoe/hexo-theme-nexmoe" target="_blank">Nexmoe</a>
+        <br><a target="_blank" href="https://www.upyun.com/?utm_source=lianmeng&utm_medium=referral"><img src="https://i.dawnlab.me/c0268c1e6cfd0863d6ba35be1575941a.png" width="150px"></a><script data-ad-client="ca-pub-2058306854838448" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    </div>
+</div><!-- .nexmoe-drawer -->
+    </div>
+    <div id="nexmoe-content">
+        <div class="nexmoe-primary">
+            <div class="nexmoe-post">
+
+  <article>
+      
+          <div class="nexmoe-post-cover" style="padding-bottom: 21.428571428571427%;"> 
+              <img data-src="https://img1.baidu.com/it/u=1765832802,3477752317&fm=26&fmt=auto" data-sizes="auto" alt="C++入门基础" class="lazyload">
+              <h1>C++入门基础</h1>
+          </div>
+      
+      
+      <div class="nexmoe-post-meta nexmoe-rainbow" style="margin:10px 0!important;">
+    <a><i class="nexmoefont icon-calendar-fill"></i>2021年11月13日</a>
+    <a><i class="nexmoefont icon-areachart"></i>2.5k 字</a>
+    <a><i class="nexmoefont icon-time-circle-fill"></i>大概 11 分钟</a>
+</div>
+
+      
+
+      <h1 id="CPP入门基础"><a href="#CPP入门基础" class="headerlink" title="CPP入门基础"></a>CPP入门基础</h1><h2 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h2><ol>
+<li><a href="#CPP的结构特征">CPP的结构特征</a></li>
+<li><a href="#CPP的注释">CPP的注释</a></li>
+<li><a href="#CPP数据类型">CPP数据类型</a></li>
+<li><a href="#CPP引用">CPP引用</a></li>
+<li><a href="#CPP函数">CPP函数</a></li>
+<li><a href="#CPP输入输出流">CPP输入输出流</a></li>
+<li><a href="#const关键字">const关键字</a></li>
+<li><a href="#内联函数">内联函数</a></li>
+<li><a href="#参考">参考</a></li>
+</ol>
+<h2 id="CPP的结构特征"><a href="#CPP的结构特征" class="headerlink" title="CPP的结构特征"></a>CPP的结构特征</h2><p>&emsp;&emsp;面向对象程序包括<strong>类的声明部分</strong>与<strong>类的使用部分（方法等）</strong>。CPP的源程序拓展后缀为**.CPP**<br>eg:</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">A</span>&#123;</span></span><br><span class="line">    <span class="keyword">private</span>:</span><br><span class="line">       <span class="keyword">int</span> a,b,c;<span class="comment">//类型A的成员声明</span></span><br><span class="line">       ...</span><br><span class="line">       <span class="keyword">public</span>:</span><br><span class="line">        <span class="built_in">fun</span>()&#123;...&#125;<span class="comment">//类A的方法声明</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="CPP的注释"><a href="#CPP的注释" class="headerlink" title="CPP的注释"></a>CPP的注释</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">y = x+y; <span class="comment">//this is a comment</span></span><br><span class="line">y = x+y; <span class="comment">/*this is a comment*/</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="CPP输入输出流"><a href="#CPP输入输出流" class="headerlink" title="CPP输入输出流"></a>CPP输入输出流</h2><p>&emsp;&emsp;CPP的输入输出流是通过cin与cout函数实现的，其是利用I/O流。其中<strong>cin通过&lt;&lt;向IO流中插入字符，cout通过&gt;&gt;从IO流中抽取字符</strong>。<br>eg:</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span><span class="comment">//必须引入</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> study;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">char</span> name[<span class="number">60</span>];</span><br><span class="line">    cout&lt;&lt;<span class="string">&quot;Hello what&#x27;s your name?&quot;</span>&lt;&lt;endl;<span class="comment">//endl表示换行 </span></span><br><span class="line">    cin&gt;&gt;name;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="cin输入流"><a href="#cin输入流" class="headerlink" title="cin输入流"></a>cin输入流</h3><p>&emsp;&emsp;cin表示<strong>输入流</strong>，可以获得从键盘输入的多个值。**&gt;&gt;被称为提取运算符**，&gt;&gt;可以连续写多个，每个提取运算符后接入一个获得输入值的对象或者对象，其能自动将输入值转为相应数据类型。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> a,b,c;</span><br><span class="line">cin&gt;&gt;a&gt;&gt;b&gt;&gt;c&gt;&gt;endl;</span><br></pre></td></tr></table></figure>
+<h3 id="cout输出流"><a href="#cout输出流" class="headerlink" title="cout输出流"></a>cout输出流</h3><p>&emsp;&emsp;cout表示<strong>输出流</strong>，可以输出整数，实数，字符与字符串。**&lt;&lt;被称为插入运算符**，可以连续写多个，输出的值、转义序列与字符串。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> a,b,c;</span><br><span class="line">cout&lt;&lt;a&lt;&lt;<span class="string">&quot;abc\n&quot;</span>&lt;&lt;endl;</span><br></pre></td></tr></table></figure>
+<h3 id="格式算子"><a href="#格式算子" class="headerlink" title="格式算子"></a>格式算子</h3><p>&emsp;&emsp;输入输出时还可以通过格式控制符控制输入输出的数据格式(oct,hex,dec…)，输出默认十进制。<br><a target="_blank" rel="noopener" href="http://c.biancheng.net/view/275.html">CPP格式算子参考</a></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> num;</span><br><span class="line">cin&gt;&gt;dec&gt;&gt;num;<span class="comment">//以十进制将值输入num</span></span><br><span class="line">count&lt;&lt;<span class="string">&quot;oct\t&quot;</span>&lt;&lt;oct&lt;&lt;num&lt;&lt;endl;<span class="comment">//8进制输出num</span></span><br><span class="line">count&lt;&lt;<span class="string">&quot;hex\t&quot;</span>&lt;&lt;hex&lt;&lt;num&lt;&lt;endl;<span class="comment">//16进制输出num</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="CPP数据类型"><a href="#CPP数据类型" class="headerlink" title="CPP数据类型"></a>CPP数据类型</h2><h3 id="基本数据类型-CPP编译系统内置"><a href="#基本数据类型-CPP编译系统内置" class="headerlink" title="基本数据类型(CPP编译系统内置)"></a>基本数据类型(CPP编译系统内置)</h3><h4 id="整型Integer"><a href="#整型Integer" class="headerlink" title="整型Integer"></a>整型Integer</h4><p>其中除了逻辑型都可以用unsigned(无符号型)修饰</p>
+<ol>
+<li>字符型char</li>
+<li>整型int</li>
+<li>短整型short</li>
+<li>长整型long</li>
+<li>逻辑型bool(0为false，其他情况都为true)</li>
+</ol>
+<h4 id="浮点型floating"><a href="#浮点型floating" class="headerlink" title="浮点型floating"></a>浮点型floating</h4><ol>
+<li>单精度float</li>
+<li>双精度double</li>
+<li>长双精度 long double</li>
+</ol>
+<h3 id="非基本数据类型（用户自定义）"><a href="#非基本数据类型（用户自定义）" class="headerlink" title="非基本数据类型（用户自定义）"></a>非基本数据类型（用户自定义）</h3><ol>
+<li>枚举型enum</li>
+<li>数组类型[] </li>
+<li>指针型*</li>
+<li>空类型void</li>
+<li>结构体类型struct</li>
+<li>共用体类型union</li>
+<li>类class</li>
+</ol>
+<h2 id="CPP函数"><a href="#CPP函数" class="headerlink" title="CPP函数"></a>CPP函数</h2><h3 id="函数定义"><a href="#函数定义" class="headerlink" title="函数定义"></a>函数定义</h3><p>函数由函数头与函数体组成，函数基本定义语法为<br>&lt;返回值类型&gt; 函数名(参数列表)<br>{函数语句}</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">sum</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> b)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> a+b;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="函数调用"><a href="#函数调用" class="headerlink" title="函数调用"></a>函数调用</h3><p>调用函数要求先声明再调用，否则在调用函数之前需要在主调函数中中声明函数原型。<br>声明形式（类似与java与C#中的接口）：<br>&lt;返回值类型&gt; 函数名(形参表); (形参名可省略)</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">example</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> b)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">example</span><span class="params">(<span class="keyword">int</span>, <span class="keyword">int</span> b)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">example</span><span class="params">(<span class="keyword">int</span>, <span class="keyword">int</span>)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">example</span><span class="params">(<span class="keyword">int</span> a =<span class="number">1</span>, <span class="keyword">int</span> b =<span class="number">1</span>)</span></span>;<span class="comment">//默认值形式</span></span><br></pre></td></tr></table></figure>
+<p>注意，形参在声明时不会占用内存空间，只有当函数被调用时候才会。</p>
+<h3 id="函数参数传递方式"><a href="#函数参数传递方式" class="headerlink" title="函数参数传递方式"></a>函数参数传递方式</h3><p><a target="_blank" rel="noopener" href="http://c.biancheng.net/view/1404.html">C++类对象作为函数参数传递详解</a>可以看看这个有更好的理解</p>
+<ol>
+<li>值传递<br>C++的默认传递方式，会复制将实参的值赋予形参，修改不会改动原本的实参。而对于对象，则会根据该对象的构造函数重新构造一个相同的对象。</li>
+<li>地址传递<br>通过指针</li>
+<li>引用传递<br>通过引用<br>示例（因为在<a href="#引用的传递">引用的传递</a>部分中会出现引用传递和值传递的例子，所以这里只展示按指针传递）：<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> x =<span class="number">10</span>, y = <span class="number">5</span>;</span><br><span class="line">    cout&lt;&lt;<span class="string">&quot;x :&quot;</span>&lt;&lt;x&lt;&lt;<span class="string">&quot;,y :&quot;</span>&lt;&lt;y&lt;&lt;endl;</span><br><span class="line">    <span class="built_in">swap</span>(&amp;x,&amp;y);<span class="comment">//注意传递的是引用</span></span><br><span class="line">    cout&lt;&lt;<span class="string">&quot;x :&quot;</span>&lt;&lt;x&lt;&lt;<span class="string">&quot;,y :&quot;</span>&lt;&lt;y&lt;&lt;endl;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">swap</span><span class="params">(<span class="keyword">int</span>* a, <span class="keyword">int</span>* b)</span><span class="comment">//引用传递</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> temp = a*;</span><br><span class="line">    a* = b*;</span><br><span class="line">    b* = temp;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
+</ol>
+<h3 id="CPP函数的默认声明"><a href="#CPP函数的默认声明" class="headerlink" title="CPP函数的默认声明"></a>CPP函数的默认声明</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">example</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> b)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">example</span><span class="params">(<span class="keyword">int</span>, <span class="keyword">int</span> b)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">example</span><span class="params">(<span class="keyword">int</span>, <span class="keyword">int</span>)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">example</span><span class="params">(<span class="keyword">int</span> a =<span class="number">1</span>, <span class="keyword">int</span> b =<span class="number">1</span>)</span></span>;<span class="comment">//默认值形式</span></span><br></pre></td></tr></table></figure>
+<p>注意事项</p>
+<ol>
+<li>在函数又有原型声明又有定义的时候，默认参数只能在原型声明中使用，而不能在函数定义中指定。<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">display</span><span class="params">(<span class="keyword">int</span> i)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">display</span><span class="params">(<span class="keyword">int</span> i =<span class="number">0</span>)</span></span>;<span class="comment">//通过</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">display</span><span class="params">(<span class="keyword">int</span> i = <span class="number">50</span>)</span><span class="comment">//错误</span></span></span><br><span class="line"><span class="function"></span>&#123;...&#125;</span><br></pre></td></tr></table></figure></li>
+<li>默认值的定义顺序是从<strong>右到左</strong>的，不允许中间跳开给值。<br>因为函数调用的时候，系统是从左到右顺序进行形实结合的，当参数数目不足时候，系统才会使用默认值进行补齐。<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">display</span><span class="params">(<span class="keyword">int</span> i = <span class="number">3</span>, <span class="keyword">int</span> k =<span class="number">50</span>)</span></span>;<span class="comment">//合法</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">display</span><span class="params">(<span class="keyword">int</span> i, <span class="keyword">int</span> k = <span class="number">50</span>)</span></span>;<span class="comment">//合法</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">display</span><span class="params">(<span class="keyword">int</span> i = <span class="number">3</span>, <span class="keyword">int</span> k)</span></span>;<span class="comment">//非法</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">display</span><span class="params">(<span class="keyword">int</span> i = <span class="number">3</span>, <span class="keyword">int</span> k, <span class="keyword">int</span> j = <span class="number">100</span>)</span></span>;<span class="comment">//非法</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">display</span><span class="params">(<span class="keyword">int</span> i , <span class="keyword">int</span> k = <span class="number">50</span>, <span class="keyword">int</span> j = <span class="number">100</span>)</span></span>;<span class="comment">//合法</span></span><br></pre></td></tr></table></figure></li>
+</ol>
+<h2 id="CPP引用"><a href="#CPP引用" class="headerlink" title="CPP引用"></a>CPP引用</h2><p>引用是给程序某个变量一个别名，我们可以通过这个别名操作或者创建某个变量。（可以理解为类型相同，内存共用）<br>注意，引用不是值，在刚开始声明的时候其并不会被占用内存。<br><strong>引用在声明时必须初始化。</strong><br>对引用的修改会改到引用指向的目标。</p>
+<h3 id="引用的声明"><a href="#引用的声明" class="headerlink" title="引用的声明"></a>引用的声明</h3><p>&lt;标识符&gt;&amp; 引用名 或者 &lt;标识符&gt; &amp;引用名</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> *  输出： </span></span><br><span class="line"><span class="comment"> * a is : 7</span></span><br><span class="line"><span class="comment"> * ref is : 7</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> a;</span><br><span class="line">    <span class="keyword">int</span>&amp; ref = a;</span><br><span class="line">    a = <span class="number">6</span>;</span><br><span class="line">    ref = <span class="number">7</span>;</span><br><span class="line">    cout&lt;&lt;<span class="string">&quot;a is :&quot;</span>&lt;&lt;a&lt;&lt;endl;</span><br><span class="line">    cout&lt;&lt;<span class="string">&quot;ref is :&quot;</span>&lt;&lt;ref&lt;&lt;endl;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="引用的传递"><a href="#引用的传递" class="headerlink" title="引用的传递"></a>引用的传递</h3><p>引用作为参数传递的好处在于，传入一个对象后不会因为按值传递而复制一个对象，从而节约时间与内存。<br><a target="_blank" rel="noopener" href="http://c.biancheng.net/view/1404.html">C++类对象作为函数参数传递详解</a></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> x =<span class="number">10</span>, y = <span class="number">5</span>;</span><br><span class="line">    cout&lt;&lt;<span class="string">&quot;x :&quot;</span>&lt;&lt;x&lt;&lt;<span class="string">&quot;,y :&quot;</span>&lt;&lt;y&lt;&lt;endl;</span><br><span class="line">    <span class="built_in">swap</span>(x,y); </span><br><span class="line">    cout&lt;&lt;<span class="string">&quot;x :&quot;</span>&lt;&lt;x&lt;&lt;<span class="string">&quot;,y :&quot;</span>&lt;&lt;y&lt;&lt;endl;</span><br><span class="line">    <span class="comment">//按照引用传递，则 x :5,y :10(交换)</span></span><br><span class="line">    <span class="comment">//按照值传递，则 x :10,y: 5(没交换) </span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">swap</span><span class="params">(<span class="keyword">int</span>&amp; a, <span class="keyword">int</span>&amp; b)</span><span class="comment">//引用传递</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> temp = a;</span><br><span class="line">    a = b;</span><br><span class="line">    b = temp;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">void swap(int&amp; a, int&amp; b)//值传递</span></span><br><span class="line"><span class="comment">&#123;</span></span><br><span class="line"><span class="comment">    int temp = a;</span></span><br><span class="line"><span class="comment">    a = b;</span></span><br><span class="line"><span class="comment">    b = temp;</span></span><br><span class="line"><span class="comment">&#125;</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
+
+
+<h2 id="const关键字"><a href="#const关键字" class="headerlink" title="const关键字"></a>const关键字</h2><p>&emsp;&emsp;const关键字修饰的被称为常量，即不能被修改的部分。其可以用来修饰方法，成员变量，自定义对象，返回值与函数参数。</p>
+<ol>
+<li>修饰普通成员变量<br>被修饰的成员变量会被<strong>编译器</strong>认为是一个常量，无法修改，即使是通过改指针的值。但是可以通过在const关键字前面加<strong>volatile</strong>关键字后允许通过指针改变值。<br>例1：<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> <span class="keyword">const</span> a =<span class="number">10</span>;<span class="comment">//a此时不能被修改</span></span><br><span class="line"><span class="keyword">int</span> b = a;<span class="comment">//correct</span></span><br><span class="line">a = <span class="number">9</span>;<span class="comment">//incorrect</span></span><br></pre></td></tr></table></figure>
+例2：<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> study;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> <span class="keyword">const</span> a = <span class="number">8</span>;</span><br><span class="line">    <span class="keyword">int</span> *p = (<span class="keyword">int</span>*)&amp;a;</span><br><span class="line">    *p = <span class="number">10</span>;<span class="comment">//a指针所指向的位置值变成10，但是输出a结果仍然是8</span></span><br><span class="line">    cout&gt;&gt;a;</span><br><span class="line">    <span class="built_in">System</span>(<span class="string">&quot;Pause&quot;</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li>const修饰指针变量<br>const修饰指针指向的内容，则这个内容不可为变量。<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> *p = <span class="number">8</span>;<span class="comment">//此时*p的内容不可以改变</span></span><br></pre></td></tr></table></figure>
+const修饰指针，则指针的值不可变，但是指针指向的值的内容可以改变。<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span>* <span class="keyword">const</span> p = &amp;a;</span><br><span class="line"><span class="comment">//类型为int的指针p不能改变(int*)之间没有空格，我不知道为什么转出来有空格了</span></span><br></pre></td></tr></table></figure>
+const修饰指针和指针指向的内容，则指针和指针指向的内容都为不可变量。<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> a = <span class="number">8</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span>* <span class="keyword">const</span>  p = &amp;a;</span><br></pre></td></tr></table></figure></li>
+<li>修饰传递参数与函数返回值<br>值传递的 const 修饰传递，可以防止传入的参数被修改。<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"> <span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"> </span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"> </span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Cpf</span><span class="params">(<span class="keyword">const</span> <span class="keyword">int</span> a)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    cout&lt;&lt;a;</span><br><span class="line">    <span class="comment">// ++a;  是错误的，a 不能被改变</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+当 const 参数为指针时，可以防止指针被意外篡改。<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"> <span class="function"><span class="keyword">void</span> <span class="title">Cpf</span><span class="params">(<span class="keyword">int</span> *<span class="keyword">const</span> a)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    cout&lt;&lt;*a&lt;&lt;<span class="string">&quot; &quot;</span>;</span><br><span class="line">    *a = <span class="number">9</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+CPP中自定义类型的参数传递，需要临时对象复制参数，对于临时对象的构造，需要调用构造函数，比较浪费时间，因此我们采取 const 外加引用传递的方法。而以这种方式被传递的对象，我们不能修改它里面的成员属性。（CPP传递对象默认按值传递，会复制对象的参数并且重新调用构造函数，而在Java与C#里面，对象是引用类型，因此不存在这种麻烦）<br><a target="_blank" rel="noopener" href="http://c.biancheng.net/view/1404.html">C++类对象作为函数参数传递详解</a><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"> </span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"> </span><br><span class="line"><span class="function"><span class="keyword">const</span> <span class="keyword">int</span> <span class="title">Cmf</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">Cpf</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">void</span>)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> _m = <span class="built_in">Cmf</span>();</span><br><span class="line">    <span class="keyword">int</span> _n = <span class="built_in">Cpf</span>();</span><br><span class="line"> </span><br><span class="line">    cout&lt;&lt;_m&lt;&lt;<span class="string">&quot; &quot;</span>&lt;&lt;_n;</span><br><span class="line">    <span class="built_in">system</span>(<span class="string">&quot;pause&quot;</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
+<li>const修饰类成员函数<br>const 修饰类成员函数，其目的是防止成员函数修改被调用对象的值，如果我们不想修改一个调用对象的值，所有的成员函数都应当声明为 const 成员函数。<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">    </span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Test</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">Test</span>(<span class="keyword">int</span> _m,<span class="keyword">int</span> <span class="keyword">_t</span>):_cm(_m),_ct(<span class="keyword">_t</span>)&#123;&#125;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">Kf</span><span class="params">()</span><span class="keyword">const</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        ++_cm; <span class="comment">// 错误，const</span></span><br><span class="line">        ++_ct; <span class="comment">// 正确</span></span><br><span class="line">    &#125;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="keyword">int</span> _cm;</span><br><span class="line">    <span class="keyword">mutable</span> <span class="keyword">int</span> _ct;<span class="comment">//被mutable修饰，因此可以修改</span></span><br><span class="line">&#125;;</span><br><span class="line"> </span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">void</span>)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="function">Test <span class="title">t</span><span class="params">(<span class="number">8</span>,<span class="number">7</span>)</span></span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h2 id="内联函数"><a href="#内联函数" class="headerlink" title="内联函数"></a>内联函数</h2><p>内联函数与一般函数不同，内联函数不是调用的时候发生转移的。而是在<strong>编译时</strong>将函数体嵌入每一个调用语句中。</p>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><ul>
+<li>[1] <a target="_blank" rel="noopener" href="https://www.runoob.com/w3cnote/cpp-const-keyword.html">CPP const 关键字小结（菜鸟教程）</a></li>
+<li>[2] <a target="_blank" rel="noopener" href="https://www.icourse163.org/course/WHUT-1460865164">MOOC 面向对象的CPP和Windows编程(武汉理工大学)</a></li>
+<li>[3] <a target="_blank" rel="noopener" href="http://c.biancheng.net/view/1404.html">C++类对象作为函数参数传递详解</a></li>
+</ul>
+
+  </article>
+
+  
+      
+    <div class="nexmoe-post-copyright">
+        <strong>本文作者：</strong>深红的游戏博客<br>
+        <strong>本文链接：</strong><a href="http://example.com/2021/11/13/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/C%E8%89%B9/C%E8%89%B9%E4%B8%8A%E6%89%8B%E5%9F%BA%E7%A1%80/" title="http:&#x2F;&#x2F;example.com&#x2F;2021&#x2F;11&#x2F;13&#x2F;%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0&#x2F;C%E8%89%B9&#x2F;C%E8%89%B9%E4%B8%8A%E6%89%8B%E5%9F%BA%E7%A1%80&#x2F;" target="_blank" rel="noopener">http:&#x2F;&#x2F;example.com&#x2F;2021&#x2F;11&#x2F;13&#x2F;%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0&#x2F;C%E8%89%B9&#x2F;C%E8%89%B9%E4%B8%8A%E6%89%8B%E5%9F%BA%E7%A1%80&#x2F;</a><br>
+        
+            <strong>版权声明：</strong>本文采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/cn/deed.zh" target="_blank">CC BY-NC-SA 3.0 CN</a> 协议进行许可
+        
+    </div>
+
+
+  
+  
+  <div class="nexmoe-post-meta nexmoe-rainbow">
+    
+        <a class="nexmoefont icon-appstore-fill -link" href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">学习笔记</a><a class="nexmoefont icon-appstore-fill -link" href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/C%E8%89%B9/">C艹</a>
+    
+    
+        <a class="nexmoefont icon-tag-fill -none-link" href="/tags/C%E8%89%B9%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%BC%96%E7%A8%8B/" rel="tag">C艹面向对象编程</a> <a class="nexmoefont icon-tag-fill -none-link" href="/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" rel="tag">学习笔记</a>
+    
+</div>
+
+  
+      <div class="nexmoe-post-footer">
+          <section class="nexmoe-comment">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@latest/dist/gitalk.min.css">
+<div id="gitalk"></div>
+<script src="https://cdn.jsdelivr.net/npm/gitalk@latest/dist/gitalk.min.js"></script>
+<script type="text/javascript">
+    var gitalk = new Gitalk({
+        clientID: '80b2453b6d5f37ad6225',
+        clientSecret: '43e99fa852795c9a7b3eb924b2558c64b84bbdeb',
+        id: window.location.pathname,
+        repo: 'nexmoe.github.io',
+        owner: 'nexmoe',
+        admin: 'nexmoe'
+    })
+    gitalk.render('gitalk')
+</script>
+</section>
+      </div>
+  
+</div>
+            <div class="nexmoe-post-right">
+              <div class="nexmoe-fixed">
+                  <div class="nexmoe-tool"> 
+                    
+                      
+                        
+                          
+                          
+                              <button class="mdui-fab catalog" style="overflow:unset;">
+                                  <i class="nexmoefont icon-i-catalog"></i>
+                                  <div class="nexmoe-toc">
+                                      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#CPP%E5%85%A5%E9%97%A8%E5%9F%BA%E7%A1%80"><span class="toc-number">1.</span> <span class="toc-text">CPP入门基础</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%9B%AE%E5%BD%95"><span class="toc-number">1.1.</span> <span class="toc-text">目录</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CPP%E7%9A%84%E7%BB%93%E6%9E%84%E7%89%B9%E5%BE%81"><span class="toc-number">1.2.</span> <span class="toc-text">CPP的结构特征</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CPP%E7%9A%84%E6%B3%A8%E9%87%8A"><span class="toc-number">1.3.</span> <span class="toc-text">CPP的注释</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CPP%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA%E6%B5%81"><span class="toc-number">1.4.</span> <span class="toc-text">CPP输入输出流</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#cin%E8%BE%93%E5%85%A5%E6%B5%81"><span class="toc-number">1.4.1.</span> <span class="toc-text">cin输入流</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#cout%E8%BE%93%E5%87%BA%E6%B5%81"><span class="toc-number">1.4.2.</span> <span class="toc-text">cout输出流</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A0%BC%E5%BC%8F%E7%AE%97%E5%AD%90"><span class="toc-number">1.4.3.</span> <span class="toc-text">格式算子</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CPP%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B"><span class="toc-number">1.5.</span> <span class="toc-text">CPP数据类型</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B-CPP%E7%BC%96%E8%AF%91%E7%B3%BB%E7%BB%9F%E5%86%85%E7%BD%AE"><span class="toc-number">1.5.1.</span> <span class="toc-text">基本数据类型(CPP编译系统内置)</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%95%B4%E5%9E%8BInteger"><span class="toc-number">1.5.1.1.</span> <span class="toc-text">整型Integer</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%B5%AE%E7%82%B9%E5%9E%8Bfloating"><span class="toc-number">1.5.1.2.</span> <span class="toc-text">浮点型floating</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%9D%9E%E5%9F%BA%E6%9C%AC%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%EF%BC%88%E7%94%A8%E6%88%B7%E8%87%AA%E5%AE%9A%E4%B9%89%EF%BC%89"><span class="toc-number">1.5.2.</span> <span class="toc-text">非基本数据类型（用户自定义）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CPP%E5%87%BD%E6%95%B0"><span class="toc-number">1.6.</span> <span class="toc-text">CPP函数</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%87%BD%E6%95%B0%E5%AE%9A%E4%B9%89"><span class="toc-number">1.6.1.</span> <span class="toc-text">函数定义</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%87%BD%E6%95%B0%E8%B0%83%E7%94%A8"><span class="toc-number">1.6.2.</span> <span class="toc-text">函数调用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%87%BD%E6%95%B0%E5%8F%82%E6%95%B0%E4%BC%A0%E9%80%92%E6%96%B9%E5%BC%8F"><span class="toc-number">1.6.3.</span> <span class="toc-text">函数参数传递方式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CPP%E5%87%BD%E6%95%B0%E7%9A%84%E9%BB%98%E8%AE%A4%E5%A3%B0%E6%98%8E"><span class="toc-number">1.6.4.</span> <span class="toc-text">CPP函数的默认声明</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CPP%E5%BC%95%E7%94%A8"><span class="toc-number">1.7.</span> <span class="toc-text">CPP引用</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BC%95%E7%94%A8%E7%9A%84%E5%A3%B0%E6%98%8E"><span class="toc-number">1.7.1.</span> <span class="toc-text">引用的声明</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BC%95%E7%94%A8%E7%9A%84%E4%BC%A0%E9%80%92"><span class="toc-number">1.7.2.</span> <span class="toc-text">引用的传递</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#const%E5%85%B3%E9%94%AE%E5%AD%97"><span class="toc-number">1.8.</span> <span class="toc-text">const关键字</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%86%85%E8%81%94%E5%87%BD%E6%95%B0"><span class="toc-number">1.9.</span> <span class="toc-text">内联函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83"><span class="toc-number">1.10.</span> <span class="toc-text">参考</span></a></li></ol></li></ol>
+                                  </div>
+                              </button>
+                          
+                          
+                      
+                    
+                      <a href="#nexmoe-content" class="toc-link" aria-label="回到顶部" title="top"><button class="mdui-fab mdui-ripple"><i class="nexmoefont icon-caret-top"></i></button></a>
+                  </div>
+              </div>
+            </div>
+        </div>
+    </div>
+     
+    <div id="nexmoe-search-space">
+        <div class="search-container">
+            <div class="search-header">
+                <div class="search-input-container">
+                    <input class="search-input" type="text" placeholder="搜索" oninput="sinput();">
+                </div>
+                <a class="search-close" onclick="sclose();">×</a>
+            </div>
+            <div class="search-body"></div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/combine/npm/lazysizes@5.1.0/lazysizes.min.js,npm/mdui@0.4.3/dist/js/mdui.min.js?v=1"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+
+ 
+
+<script async src="/js/app.js?v=1636812748648"></script>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/js/jquery.justifiedGallery.min.js"></script>
+<script>
+	$(".justified-gallery").justifiedGallery({
+		rowHeight: 160,
+		margins: 10,
+	});
+</script>
+
+
+    
+
+
+
+
+
+</body>
+
+</html>
