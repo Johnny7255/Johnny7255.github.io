@@ -13,24 +13,24 @@
     
 
     <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
-    <meta name="description" content="CPP入门基础前言上学期去参与某个游戏公司的笔试，然后笔试代码考的是C++，于是我很难受，我的入门语言是Java，然后用的最多的语言C#，于是决定C++速成一波。不过因为我学习C++主要是为了涉及笔试的，所以我并不会在里面写什么比较主流的C++框架以及特殊用途。我只会在这里写如何用C++实现面向对象编程的有关内容，因此如果没有面向对象编程经验并且完全没有C语言基础的，看我这个系列学会C++是不可能">
+    <meta name="description" content="CPP入门基础前言上星期去参与某个游戏公司的笔试，然后笔试代码考的是C++，于是我很难受，我的入门语言是Java，然后用的最多的语言C#，于是决定C++速成一波。不过因为我学习C++主要是为了涉及笔试的，所以我并不会在里面写什么比较主流的C++框架以及特殊用途。我只会在这里写如何用C++实现面向对象编程的有关内容，因此如果没有面向对象编程经验并且完全没有C语言基础的，看我这个系列学会C++是不可能">
 <meta property="og:type" content="article">
 <meta property="og:title" content="C++入门基础">
 <meta property="og:url" content="http://example.com/2021/11/13/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/C%E8%89%B9/C%E8%89%B9%E4%B8%8A%E6%89%8B%E5%9F%BA%E7%A1%80/index.html">
 <meta property="og:site_name" content="深红的游戏博客">
-<meta property="og:description" content="CPP入门基础前言上学期去参与某个游戏公司的笔试，然后笔试代码考的是C++，于是我很难受，我的入门语言是Java，然后用的最多的语言C#，于是决定C++速成一波。不过因为我学习C++主要是为了涉及笔试的，所以我并不会在里面写什么比较主流的C++框架以及特殊用途。我只会在这里写如何用C++实现面向对象编程的有关内容，因此如果没有面向对象编程经验并且完全没有C语言基础的，看我这个系列学会C++是不可能">
+<meta property="og:description" content="CPP入门基础前言上星期去参与某个游戏公司的笔试，然后笔试代码考的是C++，于是我很难受，我的入门语言是Java，然后用的最多的语言C#，于是决定C++速成一波。不过因为我学习C++主要是为了涉及笔试的，所以我并不会在里面写什么比较主流的C++框架以及特殊用途。我只会在这里写如何用C++实现面向对象编程的有关内容，因此如果没有面向对象编程经验并且完全没有C语言基础的，看我这个系列学会C++是不可能">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2021-11-12T16:00:00.000Z">
-<meta property="article:modified_time" content="2021-11-14T03:43:47.341Z">
+<meta property="article:modified_time" content="2021-11-14T03:48:15.605Z">
 <meta property="article:author" content="深红的游戏博客">
 <meta property="article:tag" content="学习笔记">
 <meta property="article:tag" content="C艹面向对象编程">
 <meta name="twitter:card" content="summary">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/combine/npm/highlight.js@9.15.8/styles/atom-one-dark.css,npm/justifiedGallery@3.8.1/dist/css/justifiedGallery.min.css,gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css,npm/hexo-theme-nexmoe@latest/source/lib/mdui_043tiny/css/mdui.css,npm/hexo-theme-nexmoe@latest/source/lib/iconfont/iconfont.css?v=233" crossorigin>
-    <link rel="stylesheet" href="/css/style.css?v=1636861442553">
+    <link rel="stylesheet" href="/css/style.css?v=1636861723136">
      
     
-    <link rel="stylesheet" href="/lib/iconfont/iconfont.css?v=1636861442553">
+    <link rel="stylesheet" href="/lib/iconfont/iconfont.css?v=1636861723136">
     
         <link rel="stylesheet" href="/custom.css">
     
@@ -227,7 +227,7 @@
 
       
 
-      <h1 id="CPP入门基础"><a href="#CPP入门基础" class="headerlink" title="CPP入门基础"></a>CPP入门基础</h1><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>上学期去参与某个游戏公司的笔试，然后笔试代码考的是C++，于是我很难受，我的入门语言是Java，然后用的最多的语言C#，于是决定C++速成一波。不过因为我学习C++主要是为了涉及笔试的，所以我并不会在里面写什么比较主流的C++框架以及特殊用途。我只会在这里写如何用C++实现<strong>面向对象编程</strong>的有关内容，因此如果没有<strong>面向对象编程经验</strong>并且完全没有<strong>C语言基础</strong>的，看我这个系列学会C++是不可能的，毕竟这个只是一个有编程经验但是不是从C开始学习编程的人的学习笔记。如果有什么错误请在我的github上留言，谢谢啦。</p>
+      <h1 id="CPP入门基础"><a href="#CPP入门基础" class="headerlink" title="CPP入门基础"></a>CPP入门基础</h1><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>上星期去参与某个游戏公司的笔试，然后笔试代码考的是C++，于是我很难受，我的入门语言是Java，然后用的最多的语言C#，于是决定C++速成一波。不过因为我学习C++主要是为了涉及笔试的，所以我并不会在里面写什么比较主流的C++框架以及特殊用途。我只会在这里写如何用C++实现<strong>面向对象编程</strong>的有关内容，因此如果没有<strong>面向对象编程经验</strong>并且完全没有<strong>C语言基础</strong>的，看我这个系列学会C++是不可能的，毕竟这个只是一个有编程经验但是不是从C开始学习编程的人的学习笔记。如果有什么错误请在我的github上留言，谢谢啦。</p>
 <h2 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h2><ol>
 <li><a href="#CPP的结构特征">CPP的结构特征</a></li>
 <li><a href="#CPP的注释">CPP的注释</a></li>
@@ -450,7 +450,7 @@
 
  
 
-<script async src="/js/app.js?v=1636861442674"></script>
+<script async src="/js/app.js?v=1636861723231"></script>
 
 
 
