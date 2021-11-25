@@ -16,21 +16,23 @@
     <meta name="description" content="模板方法模式GOF 定义为一个算法定义操作的骨架，然后价格具体的实现方法交给子类来实现。模板方法模式允许子类重新定义算法的某些步骤而不改变算法的结构。 概念&amp;emsp;&amp;emsp;在模板方法模式中，定义算法的最小的稳定结构，然后将一些责任交给子类进行实现。其主要目的是在不改变算法的流程时，重新定义某些算法步骤。因此，当您实现多步骤算法并且希望通过子类自定义时，这种设计模式非常有用。这个方法可以有效">
 <meta property="og:type" content="article">
 <meta property="og:title" content="模板方法模式(笔记)">
-<meta property="og:url" content="http://example.com/2021/11/23/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E6%A8%A1%E6%9D%BF%E6%96%B9%E6%B3%95%E6%A8%A1%E5%BC%8F/index.html">
+<meta property="og:url" content="http://example.com/2021/11/25/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E6%A8%A1%E6%9D%BF%E6%96%B9%E6%B3%95%E6%A8%A1%E5%BC%8F/index.html">
 <meta property="og:site_name" content="深红的游戏博客">
 <meta property="og:description" content="模板方法模式GOF 定义为一个算法定义操作的骨架，然后价格具体的实现方法交给子类来实现。模板方法模式允许子类重新定义算法的某些步骤而不改变算法的结构。 概念&amp;emsp;&amp;emsp;在模板方法模式中，定义算法的最小的稳定结构，然后将一些责任交给子类进行实现。其主要目的是在不改变算法的流程时，重新定义某些算法步骤。因此，当您实现多步骤算法并且希望通过子类自定义时，这种设计模式非常有用。这个方法可以有效">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2021-11-22T16:00:00.000Z">
-<meta property="article:modified_time" content="2021-11-23T09:30:13.007Z">
+<meta property="og:image" content="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fwww.pianshen.com%2Fimages%2F323%2Ff0c27e26ef475e82e50c7e8cc4087a03.png&refer=http%3A%2F%2Fwww.pianshen.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1640415257&t=c9d66e8190ee9ff831c6e33b66b9cab0">
+<meta property="article:published_time" content="2021-11-24T16:00:00.000Z">
+<meta property="article:modified_time" content="2021-11-25T07:20:17.218Z">
 <meta property="article:author" content="深红的游戏博客">
 <meta property="article:tag" content="设计模式">
 <meta property="article:tag" content="学习笔记">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fwww.pianshen.com%2Fimages%2F323%2Ff0c27e26ef475e82e50c7e8cc4087a03.png&refer=http%3A%2F%2Fwww.pianshen.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1640415257&t=c9d66e8190ee9ff831c6e33b66b9cab0">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/combine/npm/highlight.js@9.15.8/styles/atom-one-dark.css,npm/justifiedGallery@3.8.1/dist/css/justifiedGallery.min.css,gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css,npm/hexo-theme-nexmoe@latest/source/lib/mdui_043tiny/css/mdui.css,npm/hexo-theme-nexmoe@latest/source/lib/iconfont/iconfont.css?v=233" crossorigin>
-    <link rel="stylesheet" href="/css/style.css?v=1637768179772">
+    <link rel="stylesheet" href="/css/style.css?v=1637824844333">
      
     
-    <link rel="stylesheet" href="/lib/iconfont/iconfont.css?v=1637768179772">
+    <link rel="stylesheet" href="/lib/iconfont/iconfont.css?v=1637824844333">
     
         <link rel="stylesheet" href="/custom.css">
     
@@ -213,16 +215,16 @@
 
   <article>
       
-          <div class="nexmoe-post-cover" style="padding-bottom: 75%;"> 
-              <img data-src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fwww.mianfeiwendang.com%2Fpic%2F41e03141210633d1bdafea39%2F5-810-jpg_6-1080-0-0-1080.jpg&refer=http%3A%2F%2Fwww.mianfeiwendang.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1640177492&t=9aee803eeeb93582195d3d0459f65670" data-sizes="auto" alt="模板方法模式(笔记)" class="lazyload">
+          <div class="nexmoe-post-cover" style="padding-bottom: 56.25%;"> 
+              <img data-src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Farticle-fd.zol-img.com.cn%2Ft_s640x2000%2Fg6%2FM00%2F01%2F08%2FChMkKWBj4LGIDS_NAAP9xoctjJAAAMYWAEaN7EAA_3e066.jpg&refer=http%3A%2F%2Farticle-fd.zol-img.com.cn&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1640416790&t=aad2fa140f0c5099ec601666e9d1a865" data-sizes="auto" alt="模板方法模式(笔记)" class="lazyload">
               <h1>模板方法模式(笔记)</h1>
           </div>
       
       
       <div class="nexmoe-post-meta nexmoe-rainbow" style="margin:10px 0!important;">
-    <a><i class="nexmoefont icon-calendar-fill"></i>2021年11月23日</a>
-    <a><i class="nexmoefont icon-areachart"></i>302 字</a>
-    <a><i class="nexmoefont icon-time-circle-fill"></i>大概 1 分钟</a>
+    <a><i class="nexmoefont icon-calendar-fill"></i>2021年11月25日</a>
+    <a><i class="nexmoefont icon-areachart"></i>569 字</a>
+    <a><i class="nexmoefont icon-time-circle-fill"></i>大概 2 分钟</a>
 </div>
 
       
@@ -230,10 +232,22 @@
       <h1 id="模板方法模式"><a href="#模板方法模式" class="headerlink" title="模板方法模式"></a>模板方法模式</h1><h2 id="GOF-定义"><a href="#GOF-定义" class="headerlink" title="GOF 定义"></a>GOF 定义</h2><p>为一个算法定义操作的骨架，然后价格具体的实现方法交给子类来实现。模板方法模式允许子类重新定义算法的某些步骤而不改变算法的结构。</p>
 <h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><p>&emsp;&emsp;在模板方法模式中，定义算法的<strong>最小的稳定结构</strong>，然后将一些责任交给子类进行实现。其主要目的是在<strong>不改变算法的流程时，重新定义某些算法步骤</strong>。因此，当您实现多步骤算法并且希望通过子类自定义时，这种设计模式非常有用。这个方法可以有效防止某些有相似步骤的算法出现大量代码重复。</p>
 <h2 id="情景描述"><a href="#情景描述" class="headerlink" title="情景描述"></a>情景描述</h2><p>&emsp;&emsp;你去买烧肉，厨师刚开始会按照常规的步骤去烤肉，但是最后会根据你的口味放调料。</p>
+<h2 id="类图"><a href="#类图" class="headerlink" title="类图"></a>类图</h2><blockquote>
+<p><img data-fancybox="gallery" data-sizes="auto" data-src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fwww.pianshen.com%2Fimages%2F323%2Ff0c27e26ef475e82e50c7e8cc4087a03.png&refer=http%3A%2F%2Fwww.pianshen.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1640415257&t=c9d66e8190ee9ff831c6e33b66b9cab0" alt="类图" class="lazyload"></p>
+</blockquote>
 <h2 id="这个和构造器模式很像，这样说正确吗？"><a href="#这个和构造器模式很像，这样说正确吗？" class="headerlink" title="这个和构造器模式很像，这样说正确吗？"></a>这个和构造器模式很像，这样说正确吗？</h2><p>代码的思路是相同的，但是二者完全不同。</p>
 <ol>
-<li>模板方法模式是一种行为型模式，而构造器模式是一种创建模式</li>
-<li>构造器模式中</li>
+<li>模板方法模式是一种行为型模式，而构造器模式是一种创建模式。</li>
+<li>构造器模式中,使用者能够控制算法的过程，而模板方法模式中方法的算法流程是由模板固定的。</li>
+</ol>
+<h2 id="模板方法模式的优点是什么"><a href="#模板方法模式的优点是什么" class="headerlink" title="模板方法模式的优点是什么"></a>模板方法模式的优点是什么</h2><ol>
+<li>算法的执行流程完全由模板(编写者)定义，用户无法修改。</li>
+<li>可以在模板的某些地方集中处理某些操作（比如在一个抽象类中），然后让使用者重新定义需要变化的算法部分。</li>
+</ol>
+<h2 id="模板方法模式的缺点是什么"><a href="#模板方法模式的缺点是什么" class="headerlink" title="模板方法模式的缺点是什么"></a>模板方法模式的缺点是什么</h2><ol>
+<li>使用者不能直接控制算法的流程(个人感觉不是缺点，那样和优点冲突了)</li>
+<li>子类可以重载父类的方法，那样就有些违背里氏替换原则“派生类（子类）对象可以在程式中代替其基类（超类）对象”，之所以这么说是因为对于某些方法的重载可能会导致子类与父类之间的行为不能符合替换的预期。</li>
+<li>子类越多表示零散的代码越多，也就越难以维护。</li>
 </ol>
 
   </article>
@@ -242,7 +256,7 @@
       
     <div class="nexmoe-post-copyright">
         <strong>本文作者：</strong>深红的游戏博客<br>
-        <strong>本文链接：</strong><a href="http://example.com/2021/11/23/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E6%A8%A1%E6%9D%BF%E6%96%B9%E6%B3%95%E6%A8%A1%E5%BC%8F/" title="http:&#x2F;&#x2F;example.com&#x2F;2021&#x2F;11&#x2F;23&#x2F;%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0&#x2F;%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F&#x2F;%E6%A8%A1%E6%9D%BF%E6%96%B9%E6%B3%95%E6%A8%A1%E5%BC%8F&#x2F;" target="_blank" rel="noopener">http:&#x2F;&#x2F;example.com&#x2F;2021&#x2F;11&#x2F;23&#x2F;%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0&#x2F;%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F&#x2F;%E6%A8%A1%E6%9D%BF%E6%96%B9%E6%B3%95%E6%A8%A1%E5%BC%8F&#x2F;</a><br>
+        <strong>本文链接：</strong><a href="http://example.com/2021/11/25/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E6%A8%A1%E6%9D%BF%E6%96%B9%E6%B3%95%E6%A8%A1%E5%BC%8F/" title="http:&#x2F;&#x2F;example.com&#x2F;2021&#x2F;11&#x2F;25&#x2F;%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0&#x2F;%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F&#x2F;%E6%A8%A1%E6%9D%BF%E6%96%B9%E6%B3%95%E6%A8%A1%E5%BC%8F&#x2F;" target="_blank" rel="noopener">http:&#x2F;&#x2F;example.com&#x2F;2021&#x2F;11&#x2F;25&#x2F;%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0&#x2F;%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F&#x2F;%E6%A8%A1%E6%9D%BF%E6%96%B9%E6%B3%95%E6%A8%A1%E5%BC%8F&#x2F;</a><br>
         
             <strong>版权声明：</strong>本文采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/cn/deed.zh" target="_blank">CC BY-NC-SA 3.0 CN</a> 协议进行许可
         
@@ -292,7 +306,7 @@
                               <button class="mdui-fab catalog" style="overflow:unset;">
                                   <i class="nexmoefont icon-i-catalog"></i>
                                   <div class="nexmoe-toc">
-                                      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%A8%A1%E6%9D%BF%E6%96%B9%E6%B3%95%E6%A8%A1%E5%BC%8F"><span class="toc-number">1.</span> <span class="toc-text">模板方法模式</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#GOF-%E5%AE%9A%E4%B9%89"><span class="toc-number">1.1.</span> <span class="toc-text">GOF 定义</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A6%82%E5%BF%B5"><span class="toc-number">1.2.</span> <span class="toc-text">概念</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%83%85%E6%99%AF%E6%8F%8F%E8%BF%B0"><span class="toc-number">1.3.</span> <span class="toc-text">情景描述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BF%99%E4%B8%AA%E5%92%8C%E6%9E%84%E9%80%A0%E5%99%A8%E6%A8%A1%E5%BC%8F%E5%BE%88%E5%83%8F%EF%BC%8C%E8%BF%99%E6%A0%B7%E8%AF%B4%E6%AD%A3%E7%A1%AE%E5%90%97%EF%BC%9F"><span class="toc-number">1.4.</span> <span class="toc-text">这个和构造器模式很像，这样说正确吗？</span></a></li></ol></li></ol>
+                                      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%A8%A1%E6%9D%BF%E6%96%B9%E6%B3%95%E6%A8%A1%E5%BC%8F"><span class="toc-number">1.</span> <span class="toc-text">模板方法模式</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#GOF-%E5%AE%9A%E4%B9%89"><span class="toc-number">1.1.</span> <span class="toc-text">GOF 定义</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A6%82%E5%BF%B5"><span class="toc-number">1.2.</span> <span class="toc-text">概念</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%83%85%E6%99%AF%E6%8F%8F%E8%BF%B0"><span class="toc-number">1.3.</span> <span class="toc-text">情景描述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%B1%BB%E5%9B%BE"><span class="toc-number">1.4.</span> <span class="toc-text">类图</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BF%99%E4%B8%AA%E5%92%8C%E6%9E%84%E9%80%A0%E5%99%A8%E6%A8%A1%E5%BC%8F%E5%BE%88%E5%83%8F%EF%BC%8C%E8%BF%99%E6%A0%B7%E8%AF%B4%E6%AD%A3%E7%A1%AE%E5%90%97%EF%BC%9F"><span class="toc-number">1.5.</span> <span class="toc-text">这个和构造器模式很像，这样说正确吗？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A8%A1%E6%9D%BF%E6%96%B9%E6%B3%95%E6%A8%A1%E5%BC%8F%E7%9A%84%E4%BC%98%E7%82%B9%E6%98%AF%E4%BB%80%E4%B9%88"><span class="toc-number">1.6.</span> <span class="toc-text">模板方法模式的优点是什么</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A8%A1%E6%9D%BF%E6%96%B9%E6%B3%95%E6%A8%A1%E5%BC%8F%E7%9A%84%E7%BC%BA%E7%82%B9%E6%98%AF%E4%BB%80%E4%B9%88"><span class="toc-number">1.7.</span> <span class="toc-text">模板方法模式的缺点是什么</span></a></li></ol></li></ol>
                                   </div>
                               </button>
                           
@@ -324,7 +338,7 @@
 
  
 
-<script async src="/js/app.js?v=1637768179783"></script>
+<script async src="/js/app.js?v=1637824844350"></script>
 
 
 
