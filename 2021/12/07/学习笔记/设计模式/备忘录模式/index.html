@@ -4,7 +4,7 @@
 
 <head>
     
-    <title>分类：设计模式 - 深红的游戏博客</title>
+    <title>备忘录模式(笔记) - 深红的游戏博客</title>
     <meta charset="UTF-8">
     <meta name="description" content="深红的游戏博客">
     <meta name="keywords" content="">
@@ -13,20 +13,26 @@
     
 
     <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
-    <meta name="description" content="深红的游戏博客">
-<meta property="og:type" content="website">
-<meta property="og:title" content="深红的游戏博客">
-<meta property="og:url" content="http://example.com/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/index.html">
+    <meta name="description" content="备忘录模式GOF 定义&amp;emsp;&amp;emsp;在不破坏对象封装的情况下，获取并且在外部保存一个状态的内部状态，以便于之后可以复原这个对象的状态。 概念&amp;emsp;&amp;emsp;如果打算复原某个对象的一些状态，我们可能需要获取对象之前的某些状态。但是如果我们将这些状态的访问性扩大，我们就破坏了封装的原则。&amp;emsp;&amp;emsp;在备忘录模式中，我们储存对象修改前的状态，同时不破坏对象的封装性。 使用情">
+<meta property="og:type" content="article">
+<meta property="og:title" content="备忘录模式(笔记)">
+<meta property="og:url" content="http://example.com/2021/12/07/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E5%A4%87%E5%BF%98%E5%BD%95%E6%A8%A1%E5%BC%8F/index.html">
 <meta property="og:site_name" content="深红的游戏博客">
-<meta property="og:description" content="深红的游戏博客">
+<meta property="og:description" content="备忘录模式GOF 定义&amp;emsp;&amp;emsp;在不破坏对象封装的情况下，获取并且在外部保存一个状态的内部状态，以便于之后可以复原这个对象的状态。 概念&amp;emsp;&amp;emsp;如果打算复原某个对象的一些状态，我们可能需要获取对象之前的某些状态。但是如果我们将这些状态的访问性扩大，我们就破坏了封装的原则。&amp;emsp;&amp;emsp;在备忘录模式中，我们储存对象修改前的状态，同时不破坏对象的封装性。 使用情">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fupload-images.jianshu.io%2Fupload_images%2F2222997-f5ac5fe987aa095d.png&refer=http%3A%2F%2Fupload-images.jianshu.io&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1641450902&t=7a7018d8a198d1311483c11d57c9af14">
+<meta property="article:published_time" content="2021-12-06T16:00:00.000Z">
+<meta property="article:modified_time" content="2021-12-07T09:06:59.725Z">
 <meta property="article:author" content="深红的游戏博客">
+<meta property="article:tag" content="设计模式">
+<meta property="article:tag" content="学习笔记">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fupload-images.jianshu.io%2Fupload_images%2F2222997-f5ac5fe987aa095d.png&refer=http%3A%2F%2Fupload-images.jianshu.io&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1641450902&t=7a7018d8a198d1311483c11d57c9af14">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/combine/npm/highlight.js@9.15.8/styles/atom-one-dark.css,npm/justifiedGallery@3.8.1/dist/css/justifiedGallery.min.css,gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css,npm/hexo-theme-nexmoe@latest/source/lib/mdui_043tiny/css/mdui.css,npm/hexo-theme-nexmoe@latest/source/lib/iconfont/iconfont.css?v=233" crossorigin>
-    <link rel="stylesheet" href="/css/style.css?v=1638870670258">
+    <link rel="stylesheet" href="/css/style.css?v=1638870669928">
      
     
-    <link rel="stylesheet" href="/lib/iconfont/iconfont.css?v=1638870670258">
+    <link rel="stylesheet" href="/lib/iconfont/iconfont.css?v=1638870669928">
     
         <link rel="stylesheet" href="/custom.css">
     
@@ -205,58 +211,101 @@
     </div>
     <div id="nexmoe-content">
         <div class="nexmoe-primary">
-            <section class="nexmoe-posts">
-    
-    <div class="nexmoe-post">
-        <a href="/2021/10/01/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E5%8E%9F%E5%9E%8B%E6%A8%A1%E5%BC%8F/">
-            
-                <div class="nexmoe-post-cover mdui-ripple" style="padding-bottom: NaN%;"> 
-                    <img data-src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2F5b0988e595225.cdn.sohucs.com%2Fimages%2F20180828%2F9ae7fbce82e34a878c7670df00d97151.jpeg&refer=http%3A%2F%2F5b0988e595225.cdn.sohucs.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1635683048&t=ac78356ad2c1625f80a92de63b5b115b" data-sizes="auto" alt="原型模式" class="lazyload">
-                    <h1>原型模式</h1>
-                </div>
-            
-        </a>
+            <div class="nexmoe-post">
 
-        <div class="nexmoe-post-meta nexmoe-rainbow">
-            <a><i class="nexmoefont icon-calendar-fill"></i>2021年10月01日</a>
-            <a><i class="nexmoefont icon-areachart"></i>1.5k 字</a>
-            <a><i class="nexmoefont icon-time-circle-fill"></i>大概 6 分钟</a>
-        </div>
+  <article>
+      
+          <div class="nexmoe-post-cover" style="padding-bottom: 177.75862068965517%;"> 
+              <img data-src="https://img0.baidu.com/it/u=2506325627,309034326&fm=15&fmt=auto" data-sizes="auto" alt="备忘录模式(笔记)" class="lazyload">
+              <h1>备忘录模式(笔记)</h1>
+          </div>
+      
+      
+      <div class="nexmoe-post-meta nexmoe-rainbow" style="margin:10px 0!important;">
+    <a><i class="nexmoefont icon-calendar-fill"></i>2021年12月07日</a>
+    <a><i class="nexmoefont icon-areachart"></i>596 字</a>
+    <a><i class="nexmoefont icon-time-circle-fill"></i>大概 2 分钟</a>
+</div>
 
-        <article>
-            
-                <h1 id="原型模式"><a href="#原型模式" class="headerlink" title="原型模式"></a>原型模式</h1><h2 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h2><ol>
-...
-            
-        </article>
+      
+
+      <h1 id="备忘录模式"><a href="#备忘录模式" class="headerlink" title="备忘录模式"></a>备忘录模式</h1><h2 id="GOF-定义"><a href="#GOF-定义" class="headerlink" title="GOF 定义"></a>GOF 定义</h2><p>&emsp;&emsp;在不破坏对象封装的情况下，获取并且在外部保存一个状态的内部状态，以便于之后可以复原这个对象的状态。</p>
+<h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><p>&emsp;&emsp;如果打算复原某个对象的一些状态，我们可能需要获取对象之前的某些状态。但是如果我们将这些状态的访问性扩大，我们就破坏了封装的原则。<br>&emsp;&emsp;在备忘录模式中，我们储存对象修改前的状态，同时不破坏对象的封装性。</p>
+<h2 id="使用情景"><a href="#使用情景" class="headerlink" title="使用情景"></a>使用情景</h2><p>&emsp;&emsp;公园中收费的闸机会在你投入票之后执行一系列行为自动打开，这时你可以通过闸机。但是在你过去后，闸机状态会复原，后面来的旅客需要重新投票。</p>
+<h2 id="类图"><a href="#类图" class="headerlink" title="类图"></a>类图</h2><blockquote>
+<p><img data-fancybox="gallery" data-sizes="auto" data-src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fupload-images.jianshu.io%2Fupload_images%2F2222997-f5ac5fe987aa095d.png&refer=http%3A%2F%2Fupload-images.jianshu.io&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1641450902&t=7a7018d8a198d1311483c11d57c9af14" alt="类图" class="lazyload"></p>
+</blockquote>
+<p>Originator: 我们所需要操作的对象，这个对象的属性是封装的，我们不能直接使用。<br>Memento: 备忘录抽象类，其用于记录对象之前的状态。<br>Caretaker: 这个类需要保存当前状态时，向 Originator 类申请备忘录。<br><strong>get 和 set 都不是必须的，要因地制宜，就事论事，见风使舵，随机应变，左右逢源，见机行事</strong></p>
+<h2 id="Q-amp-A"><a href="#Q-amp-A" class="headerlink" title="Q&amp;A"></a>Q&amp;A</h2><ol>
+<li><p>有的时候我们希望能够用到很多记录点，那么该怎么样写这个结构?<br>书上说，链表或者 ArrayList。。。<del>SB 吧</del></p>
+</li>
+<li><p>备忘录模式有哪些优点?</p>
+<ul>
+<li>当出现了不期望的修改的时候，我们能够有办法把它复原成为之前期待的样子。</li>
+<li>不会破坏对于修改对象模型的封装</li>
+<li>维护高内聚性</li>
+<li>提供简单的回复技术</li>
+</ul>
+</li>
+<li><p>备忘录模式有哪些缺点?</p>
+<ul>
+<li>备忘录对象如果太多，会导致 Caretaker 类负担增加，同时也增加了维护成本。</li>
+<li>编辑备忘录需要时间，我们在实际操作中可能不允许忽略这个时间复杂度。</li>
+</ul>
+</li>
+<li><p>需要撤销的时候，如何选择备忘录模式和命令模式?</p>
+<ul>
+<li>命令模式是针对于撤销某个操作，而备忘录模式是旨在撤销某个行为。</li>
+<li>如果我们要回到之前的状态不需要考虑动作的撤销，那么我们可以直接选择备忘录模式。</li>
+</ul>
+</li>
+</ol>
+
+  </article>
+
+  
+      
+    <div class="nexmoe-post-copyright">
+        <strong>本文作者：</strong>深红的游戏博客<br>
+        <strong>本文链接：</strong><a href="http://example.com/2021/12/07/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E5%A4%87%E5%BF%98%E5%BD%95%E6%A8%A1%E5%BC%8F/" title="http:&#x2F;&#x2F;example.com&#x2F;2021&#x2F;12&#x2F;07&#x2F;%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0&#x2F;%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F&#x2F;%E5%A4%87%E5%BF%98%E5%BD%95%E6%A8%A1%E5%BC%8F&#x2F;" target="_blank" rel="noopener">http:&#x2F;&#x2F;example.com&#x2F;2021&#x2F;12&#x2F;07&#x2F;%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0&#x2F;%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F&#x2F;%E5%A4%87%E5%BF%98%E5%BD%95%E6%A8%A1%E5%BC%8F&#x2F;</a><br>
+        
+            <strong>版权声明：</strong>本文采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/cn/deed.zh" target="_blank">CC BY-NC-SA 3.0 CN</a> 协议进行许可
+        
     </div>
-    
-    <div class="nexmoe-post">
-        <a href="/2021/09/16/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F/">
-            
-                <div class="nexmoe-post-cover mdui-ripple" style="padding-bottom: 21.428571428571427%;"> 
-                    <img data-src="https://i.loli.net/2021/09/15/T4qyjnXMmOl5p2s.png" data-sizes="auto" alt="单例模式" class="lazyload">
-                    <h1>单例模式</h1>
-                </div>
-            
-        </a>
 
-        <div class="nexmoe-post-meta nexmoe-rainbow">
-            <a><i class="nexmoefont icon-calendar-fill"></i>2021年09月16日</a>
-            <a><i class="nexmoefont icon-areachart"></i>2.4k 字</a>
-            <a><i class="nexmoefont icon-time-circle-fill"></i>大概 10 分钟</a>
-        </div>
 
-        <article>
-            
-                <h1 id="单例模式"><a href="#单例模式" class="headerlink" title="单例模式"></a>单例模式</h1><h2 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h2><ol>
-...
-            
-        </article>
-    </div>
+  
+  
+  <div class="nexmoe-post-meta nexmoe-rainbow">
     
+        <a class="nexmoefont icon-appstore-fill -link" href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">学习笔记</a>
+    
+    
+        <a class="nexmoefont icon-tag-fill -none-link" href="/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" rel="tag">学习笔记</a> <a class="nexmoefont icon-tag-fill -none-link" href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" rel="tag">设计模式</a>
+    
+</div>
+
+  
+      <div class="nexmoe-post-footer">
+          <section class="nexmoe-comment">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@latest/dist/gitalk.min.css">
+<div id="gitalk"></div>
+<script src="https://cdn.jsdelivr.net/npm/gitalk@latest/dist/gitalk.min.js"></script>
+<script type="text/javascript">
+    var gitalk = new Gitalk({
+        clientID: '80b2453b6d5f37ad6225',
+        clientSecret: '43e99fa852795c9a7b3eb924b2558c64b84bbdeb',
+        id: window.location.pathname,
+        repo: 'nexmoe.github.io',
+        owner: 'nexmoe',
+        admin: 'nexmoe'
+    })
+    gitalk.render('gitalk')
+</script>
 </section>
-
+      </div>
+  
+</div>
             <div class="nexmoe-post-right">
               <div class="nexmoe-fixed">
                   <div class="nexmoe-tool"> 
@@ -264,6 +313,13 @@
                       
                         
                           
+                          
+                              <button class="mdui-fab catalog" style="overflow:unset;">
+                                  <i class="nexmoefont icon-i-catalog"></i>
+                                  <div class="nexmoe-toc">
+                                      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%A4%87%E5%BF%98%E5%BD%95%E6%A8%A1%E5%BC%8F"><span class="toc-number">1.</span> <span class="toc-text">备忘录模式</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#GOF-%E5%AE%9A%E4%B9%89"><span class="toc-number">1.1.</span> <span class="toc-text">GOF 定义</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A6%82%E5%BF%B5"><span class="toc-number">1.2.</span> <span class="toc-text">概念</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8%E6%83%85%E6%99%AF"><span class="toc-number">1.3.</span> <span class="toc-text">使用情景</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%B1%BB%E5%9B%BE"><span class="toc-number">1.4.</span> <span class="toc-text">类图</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Q-amp-A"><span class="toc-number">1.5.</span> <span class="toc-text">Q&amp;A</span></a></li></ol></li></ol>
+                                  </div>
+                              </button>
                           
                           
                       
@@ -293,7 +349,7 @@
 
  
 
-<script async src="/js/app.js?v=1638870670260"></script>
+<script async src="/js/app.js?v=1638870669940"></script>
 
 
 
