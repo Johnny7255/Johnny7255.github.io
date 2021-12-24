@@ -4,7 +4,7 @@
 
 <head>
     
-    <title>组件模式(笔记) - 深红的游戏博客</title>
+    <title>解释器模式(笔记) - 深红的游戏博客</title>
     <meta charset="UTF-8">
     <meta name="description" content="深红的游戏博客">
     <meta name="keywords" content="">
@@ -13,24 +13,26 @@
     
 
     <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
-    <meta name="description" content="组件模式GOF 定义&amp;emsp;&amp;emsp;组件模式是将多个对象组合在类树状结构上以形成部分-整体关系的层次结构。组合模式允许用户统一地处理单个对象与对象之间的组合。 情景描述&amp;emsp;&amp;emsp;你现在有个蛋糕胚，然后你有很多原材料。你可以通过像你的蛋糕胚添加各种原材料来做一个蛋糕，你可以通过组合的方式来制作一个特别的蛋糕，也可以单独做个特别的东西再添加到蛋糕上面，然后这个蛋糕胚是所有用到原材">
+    <meta name="description" content="解释器模式GOF 定义&amp;emsp;&amp;emsp;给定一个语言，用它的语法做一个解释器，这个解释器会把得到的东西翻译成符合这个语言语法的东西。 概念&amp;emsp;&amp;emsp;这个模式的目的不是让你写解释器，而是让你能够比较自由去处理输入的句子&amp;emsp;&amp;emsp;在深入了解这个模式之前，最好先去了解语言，句子，语法的概念。想快速理解这些概念可以看下《上下文无关文法》。&amp;esmp;&amp;emsp;这个模式通">
 <meta property="og:type" content="article">
-<meta property="og:title" content="组件模式(笔记)">
-<meta property="og:url" content="http://example.com/2021/11/14/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E7%BB%84%E4%BB%B6%E6%A8%A1%E5%BC%8F/index.html">
+<meta property="og:title" content="解释器模式(笔记)">
+<meta property="og:url" content="http://example.com/2021/12/24/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E8%A7%A3%E9%87%8A%E5%99%A8%E6%A8%A1%E5%BC%8F/index.html">
 <meta property="og:site_name" content="深红的游戏博客">
-<meta property="og:description" content="组件模式GOF 定义&amp;emsp;&amp;emsp;组件模式是将多个对象组合在类树状结构上以形成部分-整体关系的层次结构。组合模式允许用户统一地处理单个对象与对象之间的组合。 情景描述&amp;emsp;&amp;emsp;你现在有个蛋糕胚，然后你有很多原材料。你可以通过像你的蛋糕胚添加各种原材料来做一个蛋糕，你可以通过组合的方式来制作一个特别的蛋糕，也可以单独做个特别的东西再添加到蛋糕上面，然后这个蛋糕胚是所有用到原材">
+<meta property="og:description" content="解释器模式GOF 定义&amp;emsp;&amp;emsp;给定一个语言，用它的语法做一个解释器，这个解释器会把得到的东西翻译成符合这个语言语法的东西。 概念&amp;emsp;&amp;emsp;这个模式的目的不是让你写解释器，而是让你能够比较自由去处理输入的句子&amp;emsp;&amp;emsp;在深入了解这个模式之前，最好先去了解语言，句子，语法的概念。想快速理解这些概念可以看下《上下文无关文法》。&amp;esmp;&amp;emsp;这个模式通">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2021-11-13T16:00:00.000Z">
-<meta property="article:modified_time" content="2021-11-15T08:22:51.781Z">
+<meta property="og:image" content="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fjavaquan.com%2Ffile%2Fimage%2F20190113%2F2019011318000179028836.JPG&refer=http%3A%2F%2Fjavaquan.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1642942470&t=42e36df3ebf391e205d517635691eda3">
+<meta property="article:published_time" content="2021-12-23T16:00:00.000Z">
+<meta property="article:modified_time" content="2021-12-24T13:47:02.869Z">
 <meta property="article:author" content="深红的游戏博客">
 <meta property="article:tag" content="设计模式">
 <meta property="article:tag" content="学习笔记">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fjavaquan.com%2Ffile%2Fimage%2F20190113%2F2019011318000179028836.JPG&refer=http%3A%2F%2Fjavaquan.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1642942470&t=42e36df3ebf391e205d517635691eda3">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/combine/npm/highlight.js@9.15.8/styles/atom-one-dark.css,npm/justifiedGallery@3.8.1/dist/css/justifiedGallery.min.css,gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css,npm/hexo-theme-nexmoe@latest/source/lib/mdui_043tiny/css/mdui.css,npm/hexo-theme-nexmoe@latest/source/lib/iconfont/iconfont.css?v=233" crossorigin>
-    <link rel="stylesheet" href="/css/style.css?v=1640353655824">
+    <link rel="stylesheet" href="/css/style.css?v=1640353655702">
      
     
-    <link rel="stylesheet" href="/lib/iconfont/iconfont.css?v=1640353655824">
+    <link rel="stylesheet" href="/lib/iconfont/iconfont.css?v=1640353655702">
     
         <link rel="stylesheet" href="/custom.css">
     
@@ -213,33 +215,58 @@
 
   <article>
       
-          <div class="nexmoe-post-cover" style="padding-bottom: 100%;"> 
-              <img data-src="https://img1.baidu.com/it/u=1563298357,1300590958&fm=26&fmt=auto" data-sizes="auto" alt="组件模式(笔记)" class="lazyload">
-              <h1>组件模式(笔记)</h1>
+          <div class="nexmoe-post-cover" style="padding-bottom: 113.6%;"> 
+              <img data-src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fpic2.zhimg.com%2F50%2Fv2-f2695b489edd11a3539183c26d86c76c_hd.jpg&refer=http%3A%2F%2Fpic2.zhimg.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1642941594&t=9edcdb963a6fc0b399bfdad02c1f3fa4" data-sizes="auto" alt="解释器模式(笔记)" class="lazyload">
+              <h1>解释器模式(笔记)</h1>
           </div>
       
       
       <div class="nexmoe-post-meta nexmoe-rainbow" style="margin:10px 0!important;">
-    <a><i class="nexmoefont icon-calendar-fill"></i>2021年11月14日</a>
-    <a><i class="nexmoefont icon-areachart"></i>513 字</a>
-    <a><i class="nexmoefont icon-time-circle-fill"></i>大概 2 分钟</a>
+    <a><i class="nexmoefont icon-calendar-fill"></i>2021年12月24日</a>
+    <a><i class="nexmoefont icon-areachart"></i>754 字</a>
+    <a><i class="nexmoefont icon-time-circle-fill"></i>大概 3 分钟</a>
 </div>
 
       
 
-      <h1 id="组件模式"><a href="#组件模式" class="headerlink" title="组件模式"></a>组件模式</h1><h2 id="GOF-定义"><a href="#GOF-定义" class="headerlink" title="GOF 定义"></a>GOF 定义</h2><p>&emsp;&emsp;组件模式是将多个对象组合在<strong>类树状结构</strong>上以形成<strong>部分-整体</strong>关系的层次结构。组合模式允许用户统一地处理单个对象与对象之间的组合。</p>
-<h2 id="情景描述"><a href="#情景描述" class="headerlink" title="情景描述"></a>情景描述</h2><p>&emsp;&emsp;你现在有个蛋糕胚，然后你有很多原材料。你可以通过像你的蛋糕胚添加各种原材料来做一个蛋糕，你可以通过组合的方式来制作一个特别的蛋糕，也可以单独做个特别的东西再添加到蛋糕上面，然后这个蛋糕胚是所有用到原材料的载体，整个蛋糕就是蛋糕胚和你添加原材料的总和。</p>
-<h2 id="典型例子"><a href="#典型例子" class="headerlink" title="典型例子"></a>典型例子</h2><p>&emsp;&emsp;Unity 中最主要的 GameObject 类是个典型的组件模式的例子(Unity 的 GameObject 类实际上还用到了服务定位器模式)。在 GameObject 中，gameObject 是个最基本的载体，用户可以在上面添加与修改组件，也可以让那些组件之间发生关联。这种模式使得玩家在自定义游戏对象中有了非常高的自由性。</p>
-<h2 id="组件模式优点"><a href="#组件模式优点" class="headerlink" title="组件模式优点"></a>组件模式优点</h2><ul>
-<li>在类树状结构中，我们可以统一地处理对象之间的组合(分支结构)和单个对象(叶结构)。</li>
-<li>其非常适合<strong>整体-局部</strong>的层次关系。</li>
-<li>我们可以比较轻易地在整体结构中添加与删除组件。</li>
+      <h1 id="解释器模式"><a href="#解释器模式" class="headerlink" title="解释器模式"></a>解释器模式</h1><h2 id="GOF-定义"><a href="#GOF-定义" class="headerlink" title="GOF 定义"></a>GOF 定义</h2><p>&emsp;&emsp;给定一个语言，用它的语法做一个解释器，这个解释器会把得到的东西翻译成符合这个语言语法的东西。</p>
+<h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><p>&emsp;&emsp;<strong>这个模式的目的不是让你写解释器，而是让你能够比较自由去处理输入的句子</strong><br>&emsp;&emsp;在深入了解这个模式之前，最好先去了解<strong>语言，句子，语法</strong>的概念。想快速理解这些概念可以看下<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/398264514">《上下文无关文法》</a>。<br>&esmp;&emsp;这个模式通常用来解决怎么样<strong>用一个语言去评估一个句子</strong>的问题。因此我们在使用这个模式之前需要了解这个<strong>语言的语法</strong>，而在这些<strong>语法</strong>的基础上我们制作一个解释器。<br>&emsp;&emsp;<strong>其在语法简单的时候效果最好，而不太适用与语法过于复杂的情景</strong>。在这个模式中，可能每个类就对应着一种规则，因此规则太复杂的时候，我们会需要编写大量的规则类。<br>&emsp;&emsp;<strong>用组合的方式去处理规则大部分时候优于每种情况特殊处理</strong>。<br>&emsp;&emsp;常见的类似应用就是编译器。</p>
+<h2 id="参考类图"><a href="#参考类图" class="headerlink" title="参考类图"></a>参考类图</h2><blockquote>
+<p><img data-fancybox="gallery" data-sizes="auto" data-src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fjavaquan.com%2Ffile%2Fimage%2F20190113%2F2019011318000179028836.JPG&refer=http%3A%2F%2Fjavaquan.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1642942470&t=42e36df3ebf391e205d517635691eda3" alt="参考类图" class="lazyload"></p>
+</blockquote>
+<h3 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h3><ul>
+<li>AbstractExpression: 解释器模式需要实现的接口，我们通过将获取的内容通过这个接口的方法进行解释。</li>
+<li>TerminalExpression: 要解释 terminal expression 直接看这篇<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/398264514">《上下文无关文法》</a>。他们不需要解释器来处理。</li>
+<li>NonterminalExpression: 他们是需要解释器来解释的，他们还会继续生成文法。<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/398264514">《上下文无关文法》</a></li>
+<li>Context: 有解释器需要的一切信息。</li>
+<li>Client: 使用这个模式的人，用来构造语法树和这个语言的规则。</li>
 </ul>
-<h2 id="组件模式缺点"><a href="#组件模式缺点" class="headerlink" title="组件模式缺点"></a>组件模式缺点</h2><ul>
-<li>如果要在组件模式下维持组件的相对位置顺序，则需要一些特殊的操作。（p.s. Unity 的 gameObject 里面的组件是有顺序的,要手动调整）</li>
-<li>如果处理的东西有变异性，那么我们可能无法比较顺利地删除变异组件。</li>
-<li>随着结构越来越大，结构也会越来越难以维护。对于一些比较特殊的结构，我们甚至可能需要支出用于动态维护的开销。</li>
+<h2 id="使用流程"><a href="#使用流程" class="headerlink" title="使用流程"></a>使用流程</h2><ol>
+<li>定义用于这个规则的解释器。</li>
+<li>定义一个抽象类或一个接口来表示一个表达式，它应该包含一个用解释器处理表达式的方法。<ul>
+<li>辨认 terminal 和 non-terminal 的表达式。</li>
+<li>创建 non-terminal 表达式的方法。</li>
 </ul>
+</li>
+<li>用 2 中的两个类做语法树，语法树可以在 client 里面做也可以在别的类里面搞。</li>
+<li>将上下文(context)传递给解释器，它通常都有要被解释的句子，解释器可以使用此上下文执行其他任务。</li>
+</ol>
+<h2 id="Q-amp-A"><a href="#Q-amp-A" class="headerlink" title="Q&amp;A"></a>Q&amp;A</h2><ol>
+<li><p>什么时候用这个模式？<br>&emsp;&emsp;这个模式平常基本不会用到。基本只有自创语言或者有什么特殊协议的时候才会用到这个模式。</p>
+</li>
+<li><p>解释器模式优点有什么？</p>
+<ul>
+<li>可以自定义自己语言的语法，自己语言的解释方式，与拓展语言功能。</li>
+<li>可以自由决定如何解释这种语言。</li>
+</ul>
+</li>
+<li><p>解释器模式缺点是什么？</p>
+<ul>
+<li>这个东西工作量绝对会巨大。</li>
+<li>当规则非常多的时候，可能需要处理很多类。</li>
+</ul>
+</li>
+</ol>
 
   </article>
 
@@ -247,7 +274,7 @@
       
     <div class="nexmoe-post-copyright">
         <strong>本文作者：</strong>深红的游戏博客<br>
-        <strong>本文链接：</strong><a href="http://example.com/2021/11/14/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E7%BB%84%E4%BB%B6%E6%A8%A1%E5%BC%8F/" title="http:&#x2F;&#x2F;example.com&#x2F;2021&#x2F;11&#x2F;14&#x2F;%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0&#x2F;%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F&#x2F;%E7%BB%84%E4%BB%B6%E6%A8%A1%E5%BC%8F&#x2F;" target="_blank" rel="noopener">http:&#x2F;&#x2F;example.com&#x2F;2021&#x2F;11&#x2F;14&#x2F;%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0&#x2F;%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F&#x2F;%E7%BB%84%E4%BB%B6%E6%A8%A1%E5%BC%8F&#x2F;</a><br>
+        <strong>本文链接：</strong><a href="http://example.com/2021/12/24/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E8%A7%A3%E9%87%8A%E5%99%A8%E6%A8%A1%E5%BC%8F/" title="http:&#x2F;&#x2F;example.com&#x2F;2021&#x2F;12&#x2F;24&#x2F;%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0&#x2F;%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F&#x2F;%E8%A7%A3%E9%87%8A%E5%99%A8%E6%A8%A1%E5%BC%8F&#x2F;" target="_blank" rel="noopener">http:&#x2F;&#x2F;example.com&#x2F;2021&#x2F;12&#x2F;24&#x2F;%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0&#x2F;%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F&#x2F;%E8%A7%A3%E9%87%8A%E5%99%A8%E6%A8%A1%E5%BC%8F&#x2F;</a><br>
         
             <strong>版权声明：</strong>本文采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/cn/deed.zh" target="_blank">CC BY-NC-SA 3.0 CN</a> 协议进行许可
         
@@ -297,7 +324,7 @@
                               <button class="mdui-fab catalog" style="overflow:unset;">
                                   <i class="nexmoefont icon-i-catalog"></i>
                                   <div class="nexmoe-toc">
-                                      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%BB%84%E4%BB%B6%E6%A8%A1%E5%BC%8F"><span class="toc-number">1.</span> <span class="toc-text">组件模式</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#GOF-%E5%AE%9A%E4%B9%89"><span class="toc-number">1.1.</span> <span class="toc-text">GOF 定义</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%83%85%E6%99%AF%E6%8F%8F%E8%BF%B0"><span class="toc-number">1.2.</span> <span class="toc-text">情景描述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B8%E5%9E%8B%E4%BE%8B%E5%AD%90"><span class="toc-number">1.3.</span> <span class="toc-text">典型例子</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BB%84%E4%BB%B6%E6%A8%A1%E5%BC%8F%E4%BC%98%E7%82%B9"><span class="toc-number">1.4.</span> <span class="toc-text">组件模式优点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BB%84%E4%BB%B6%E6%A8%A1%E5%BC%8F%E7%BC%BA%E7%82%B9"><span class="toc-number">1.5.</span> <span class="toc-text">组件模式缺点</span></a></li></ol></li></ol>
+                                      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%A7%A3%E9%87%8A%E5%99%A8%E6%A8%A1%E5%BC%8F"><span class="toc-number">1.</span> <span class="toc-text">解释器模式</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#GOF-%E5%AE%9A%E4%B9%89"><span class="toc-number">1.1.</span> <span class="toc-text">GOF 定义</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A6%82%E5%BF%B5"><span class="toc-number">1.2.</span> <span class="toc-text">概念</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E7%B1%BB%E5%9B%BE"><span class="toc-number">1.3.</span> <span class="toc-text">参考类图</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AF%B4%E6%98%8E"><span class="toc-number">1.3.1.</span> <span class="toc-text">说明</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8%E6%B5%81%E7%A8%8B"><span class="toc-number">1.4.</span> <span class="toc-text">使用流程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Q-amp-A"><span class="toc-number">1.5.</span> <span class="toc-text">Q&amp;A</span></a></li></ol></li></ol>
                                   </div>
                               </button>
                           
@@ -329,7 +356,7 @@
 
  
 
-<script async src="/js/app.js?v=1640353655836"></script>
+<script async src="/js/app.js?v=1640353655710"></script>
 
 
 
