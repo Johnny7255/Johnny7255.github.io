@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+
+<html lang="zh-CN">
+
+<head>
+    
+    <title>三个工厂模式(笔记) - 深红的游戏博客</title>
+    <meta charset="UTF-8">
+    <meta name="description" content="深红的游戏博客">
+    <meta name="keywords" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5">
+    
+    
+
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+    <meta name="description" content="简单工厂模式用途&amp;emsp;&amp;emsp;通过不向客户暴露实例化对象的机制来构造来创建对象。 概念&amp;emsp;&amp;emsp;面向对象编程中，工厂是一种特殊的构造对象的对象。大体来说如何可以够着对象的都可以被称为工厂。我们可以用多种方式使用工厂，而工厂能够给我们不同对象的原型。工厂方法的最终目的是将创造对象的过程与实际应用相互分离。 参考类图   说明 工厂:工厂类是简单工厂模式的核心，负责创建实例的内">
+<meta property="og:type" content="article">
+<meta property="og:title" content="三个工厂模式(笔记)">
+<meta property="og:url" content="http://example.com/2022/01/02/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E4%B8%89%E4%B8%AA%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F/index.html">
+<meta property="og:site_name" content="深红的游戏博客">
+<meta property="og:description" content="简单工厂模式用途&amp;emsp;&amp;emsp;通过不向客户暴露实例化对象的机制来构造来创建对象。 概念&amp;emsp;&amp;emsp;面向对象编程中，工厂是一种特殊的构造对象的对象。大体来说如何可以够着对象的都可以被称为工厂。我们可以用多种方式使用工厂，而工厂能够给我们不同对象的原型。工厂方法的最终目的是将创造对象的过程与实际应用相互分离。 参考类图   说明 工厂:工厂类是简单工厂模式的核心，负责创建实例的内">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://img2.baidu.com/it/u=659020982,4292798421&fm=26&fmt=auto">
+<meta property="og:image" content="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fimg.mukewang.com%2F59f248160001fdee12800720.jpg&refer=http%3A%2F%2Fimg.mukewang.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1643700881&t=fcf2ea4007dfaf563b3f3aa2160f9b56">
+<meta property="article:published_time" content="2022-01-01T16:00:00.000Z">
+<meta property="article:modified_time" content="2022-01-02T07:43:41.895Z">
+<meta property="article:author" content="深红的游戏博客">
+<meta property="article:tag" content="设计模式">
+<meta property="article:tag" content="学习笔记">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://img2.baidu.com/it/u=659020982,4292798421&fm=26&fmt=auto">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/combine/npm/highlight.js@9.15.8/styles/atom-one-dark.css,npm/justifiedGallery@3.8.1/dist/css/justifiedGallery.min.css,gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css,npm/hexo-theme-nexmoe@latest/source/lib/mdui_043tiny/css/mdui.css,npm/hexo-theme-nexmoe@latest/source/lib/iconfont/iconfont.css?v=233" crossorigin>
+    <link rel="stylesheet" href="/css/style.css?v=1641139011595">
+     
+    
+    <link rel="stylesheet" href="/lib/iconfont/iconfont.css?v=1641139011595">
+    
+        <link rel="stylesheet" href="/custom.css">
+    
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body class="mdui-drawer-body-left">
+    
+    <div id="nexmoe-background">
+        <div class="nexmoe-bg" style="background-image: url(https://cdn.jsdelivr.net/gh/nexmoe/nexmoe.github.io@latest/images/cover/5c3aec85a4343.jpg)"></div>
+        <div class="mdui-appbar mdui-shadow-0">
+            <div class="mdui-toolbar">
+                <a mdui-drawer="{target: '#drawer', swipe: true}" title="menu" class="mdui-btn mdui-btn-icon mdui-ripple"><i class="mdui-icon nexmoefont icon-menu"></i></a>
+                <div class="mdui-toolbar-spacer"></div>
+                <!--<a href="javascript:;" class="mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">search</i></a>-->
+                <a href="/" title="深红的游戏博客" class="mdui-btn mdui-btn-icon"><img src="https://avatars.githubusercontent.com/u/70889911?s=400&amp;u=9cc5b46920578881f846a1158d686d06b29fb5fd&amp;v=4#%20%E7%BD%91%E7%AB%99%20Logo" alt="深红的游戏博客"></a>
+            </div>
+        </div>
+    </div>
+    <div id="nexmoe-header">
+        <div class="nexmoe-drawer mdui-drawer" id="drawer">
+    <div class="nexmoe-avatar mdui-ripple">
+        <a href="/" title="深红的游戏博客">
+            <img src="https://avatars.githubusercontent.com/u/70889911?s=400&amp;u=9cc5b46920578881f846a1158d686d06b29fb5fd&amp;v=4#%20%E7%BD%91%E7%AB%99%20Logo" alt="深红的游戏博客" alt="深红的游戏博客">
+        </a>
+    </div>
+    <div class="nexmoe-count">
+        <div><span>文章</span>26</div>
+        <div><span>标签</span>7</div>
+        <div><span>分类</span>6</div>
+    </div>
+    <div class="nexmoe-list mdui-list" mdui-collapse="{accordion: true}">
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple false" href="/" title="回到首页">
+            <i class="mdui-list-item-icon nexmoefont icon-home"></i>
+            <div class="mdui-list-item-content">
+                回到首页
+            </div>
+        </a>
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple false" href="/archive.html" title="文章归档">
+            <i class="mdui-list-item-icon nexmoefont icon-container"></i>
+            <div class="mdui-list-item-content">
+                文章归档
+            </div>
+        </a>
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple false" href="/about.html" title="关于博客">
+            <i class="mdui-list-item-icon nexmoefont icon-info-circle"></i>
+            <div class="mdui-list-item-content">
+                关于博客
+            </div>
+        </a>
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple false" href="/PY.html" title="我的朋友">
+            <i class="mdui-list-item-icon nexmoefont icon-unorderedlist"></i>
+            <div class="mdui-list-item-content">
+                我的朋友
+            </div>
+        </a>
+        
+    </div>
+    <aside id="nexmoe-sidebar">
+    
+    <div class="nexmoe-widget-wrap">
+    <div class="nexmoe-widget nexmoe-search">
+         
+            <form id="search_form" action_e="https://cn.bing.com/search?q=site:nexmoe.com" onsubmit="return search();">
+                <label><input id="search_value" name="q" type="search" placeholder="搜索"></label>
+            </form>
+         
+    </div>
+</div>
+    
+    <div class="nexmoe-widget-wrap">
+    <div class="nexmoe-widget nexmoe-social">
+        <a class="mdui-ripple" href="https://space.bilibili.com/33809215" target="_blank" mdui-tooltip="{content: '哔哩哔哩'}" style="color: rgb(231, 106, 141);background-color: rgba(231, 106, 141, .15);">
+            <i class="nexmoefont icon-bilibili"></i>
+        </a><a class="mdui-ripple" href="https://github.com/Johnny7255/" target="_blank" mdui-tooltip="{content: 'GitHub'}" style="color: rgb(25, 23, 23);background-color: rgba(25, 23, 23, .15);">
+            <i class="nexmoefont icon-github"></i>
+        </a><a class="mdui-ripple" href="https://leetcode-cn.com/u/projekt-red/" target="_blank" mdui-tooltip="{content: 'LeetCode'}" style="color: rgb(25, 23, 23);background-color: rgba(25, 23, 23, .15);">
+            <i class="nexmoefont icon-tag-fill"></i>
+        </a>
+    </div>
+</div>
+    
+    
+  <div class="nexmoe-widget-wrap">
+    <h3 class="nexmoe-widget-title">文章分类</h3>
+    <div class="nexmoe-widget">
+
+      <ul class="category-list">
+
+        
+
+
+        
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/学习笔记/C艹/">C艹</a>
+          <span class="category-list-count">1</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/学习笔记/">学习笔记</a>
+          <span class="category-list-count">21</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/数据结构/">数据结构</a>
+          <span class="category-list-count">1</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/算法/">算法</a>
+          <span class="category-list-count">1</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/记事/">记事</a>
+          <span class="category-list-count">1</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/设计模式/">设计模式</a>
+          <span class="category-list-count">2</span>
+        </li>
+
+        
+      </ul>
+
+    </div>
+  </div>
+
+
+    
+    
+  <div class="nexmoe-widget-wrap">
+    <div id="randomtagcloud" class="nexmoe-widget tagcloud nexmoe-rainbow">
+      <a href="/tags/C%E8%89%B9%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%BC%96%E7%A8%8B/" style="font-size: 10px;">C艹面向对象编程</a> <a href="/tags/%E5%8D%9A%E5%AE%A2%E4%BF%A1%E6%81%AF/" style="font-size: 10px;">博客信息</a> <a href="/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" style="font-size: 15px;">学习笔记</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84-%E7%AE%97%E6%B3%95/" style="font-size: 10px;">数据结构 算法</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 10px;">算法</a> <a href="/tags/%E8%AE%B0%E4%BA%8B/" style="font-size: 10px;">记事</a> <a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" style="font-size: 20px;">设计模式</a>
+    </div>
+    
+  </div>
+
+    
+    
+  <div class="nexmoe-widget-wrap">
+    <h3 class="nexmoe-widget-title">文章归档</h3>
+    <div class="nexmoe-widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/">2022</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/">2021</a><span class="archive-list-count">19</span></li></ul>
+    </div>
+  </div>
+
+
+
+    
+</aside>
+    <div class="nexmoe-copyright">
+        &copy; 2022 深红的游戏博客
+        Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+        & <a href="https://github.com/theme-nexmoe/hexo-theme-nexmoe" target="_blank">Nexmoe</a>
+        <br><a target="_blank" href="https://www.upyun.com/?utm_source=lianmeng&utm_medium=referral"><img src="https://i.dawnlab.me/c0268c1e6cfd0863d6ba35be1575941a.png" width="150px"></a><script data-ad-client="ca-pub-2058306854838448" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    </div>
+</div><!-- .nexmoe-drawer -->
+    </div>
+    <div id="nexmoe-content">
+        <div class="nexmoe-primary">
+            <div class="nexmoe-post">
+
+  <article>
+      
+          <div class="nexmoe-post-cover" style="padding-bottom: 59.05017921146953%;"> 
+              <img data-src="https://img0.baidu.com/it/u=894945926,822825940&fm=26&fmt=auto" data-sizes="auto" alt="三个工厂模式(笔记)" class="lazyload">
+              <h1>三个工厂模式(笔记)</h1>
+          </div>
+      
+      
+      <div class="nexmoe-post-meta nexmoe-rainbow" style="margin:10px 0!important;">
+    <a><i class="nexmoefont icon-calendar-fill"></i>2022年01月02日</a>
+    <a><i class="nexmoefont icon-areachart"></i>1.1k 字</a>
+    <a><i class="nexmoefont icon-time-circle-fill"></i>大概 4 分钟</a>
+</div>
+
+      
+
+      <h1 id="简单工厂模式"><a href="#简单工厂模式" class="headerlink" title="简单工厂模式"></a>简单工厂模式</h1><h2 id="用途"><a href="#用途" class="headerlink" title="用途"></a>用途</h2><p>&emsp;&emsp;通过不向客户暴露实例化对象的机制来构造来创建对象。</p>
+<h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><p>&emsp;&emsp;面向对象编程中，工厂是一种特殊的构造对象的对象。大体来说如何可以够着对象的都可以被称为工厂。我们可以用多种方式使用工厂，而工厂能够给我们不同对象的原型。工厂方法的最终目的是将创造对象的过程与实际应用相互分离。</p>
+<h2 id="参考类图"><a href="#参考类图" class="headerlink" title="参考类图"></a>参考类图</h2><blockquote>
+<p><img data-fancybox="gallery" data-sizes="auto" data-src="https://img2.baidu.com/it/u=659020982,4292798421&fm=26&fmt=auto" alt="参考类图" class="lazyload"></p>
+</blockquote>
+<h3 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h3><ol>
+<li>工厂:工厂类是简单工厂模式的核心，负责创建实例的内部逻辑。</li>
+<li>抽象产品:负责描述所有实例的公共接口，是简单工厂所创建的所有产品的父类。</li>
+<li>具体产品:简单工厂所创建的目标产物。</li>
+</ol>
+<h2 id="Q-amp-A"><a href="#Q-amp-A" class="headerlink" title="Q&amp;A"></a>Q&amp;A</h2><ol>
+<li><p>简单工厂模式为什么不直接用 new 去创建一个新的对象？</p>
+<ul>
+<li>面向对象编程的原则之一在于将稳定的代码和容易改变的代码分离。</li>
+<li>其将构造方式完全向 client 隐藏，提高了安全性。</li>
+<li>这样可以避免大量的 if-else</li>
+</ul>
+</li>
+<li><p>简单工厂模式有什么缺点？</p>
+<ul>
+<li>简单工厂模式中工厂类管理了所有对象的创建，因此增加与删除对象我们需要修改创建代码，违背了开闭原则。</li>
+<li>因为工厂类有整个类的创建逻辑，因此如果类中有错误，可能导致整个系统不能正常工作。</li>
+<li>使用简单工厂模式将会一定程度增加系统中类的个数，在一定程序上增加了系统的复杂度和理解难度。(工厂通病)</li>
+<li>对象越多，决定创建使用哪个对象会变得麻烦(工厂模式可以处理)。</li>
+</ul>
+</li>
+</ol>
+<h1 id="工厂模式"><a href="#工厂模式" class="headerlink" title="工厂模式"></a>工厂模式</h1><h2 id="GOF-定义"><a href="#GOF-定义" class="headerlink" title="GOF 定义"></a>GOF 定义</h2><p>&emsp;&emsp;定义一个创建对象的接口，通过这个接口的子类来决定实例化对象。工厂模式将实例化推到子类进行完成。</p>
+<h2 id="概念-1"><a href="#概念-1" class="headerlink" title="概念"></a>概念</h2><p>&emsp;&emsp;我们定义一个基础的抽象类作为工厂的基本结构，让它的子类进行实际的实例化对象的操作。</p>
+<h2 id="参考类图-1"><a href="#参考类图-1" class="headerlink" title="参考类图"></a>参考类图</h2><p>!&gt; <a target="_blank" rel="noopener" href="https://images2017.cnblogs.com/blog/1069060/201708/1069060-20170823115624043-1507371368.png">参考类图</a></p>
+<h2 id="Q-amp-A-1"><a href="#Q-amp-A-1" class="headerlink" title="Q&amp;A"></a>Q&amp;A</h2><ol>
+<li><p>工厂模式优点有那些?</p>
+<ul>
+<li>其将稳定的代码与可能改变的代码分离，这样使得维护比较方便。</li>
+<li>代码耦合度较低，要增加 product 我们不需要改变原有的结构。</li>
+</ul>
+</li>
+<li><p>工厂模式缺点有哪些?</p>
+<ul>
+<li>使用工厂模式将会一定程度增加系统中类的个数，在一定程序上增加了系统的复杂度和理解难度。(工厂通病)</li>
+</ul>
+</li>
+<li><p>工厂模式与简单工厂模式的区别在于哪些地方?</p>
+<ul>
+<li>相对于简单工厂模式，工厂模式将实例化的任务交延迟给了子类。</li>
+<li>简单工厂模式中，增加对象得修改原有代码结构，违背了 open-close 原则，与工厂模式相互违背。</li>
+</ul>
+</li>
+</ol>
+<h1 id="抽象工厂模式"><a href="#抽象工厂模式" class="headerlink" title="抽象工厂模式"></a>抽象工厂模式</h1><h2 id="GOF-定义-1"><a href="#GOF-定义-1" class="headerlink" title="GOF 定义"></a>GOF 定义</h2><p>&emsp;&emsp;为一组相关或者相互一类的用于创建对象的类提供接口而不指定他们创建的具体类。</p>
+<h2 id="概念-2"><a href="#概念-2" class="headerlink" title="概念"></a>概念</h2><p>&emsp;&emsp;这在基本的工厂模式上加了新的一层抽象，能够让我们有在不修改代码的情况下对特定的实现进行变化。<br>&emsp;&emsp;这个模式将有相同相似功能的工厂封装在了一起，抽象工厂不负责创建对象，而是将这个任务委托给别的工厂。<br>&emsp;&emsp;因为其封装的是一类工厂，所以其实例化的对象类型也是有限的。</p>
+<h2 id="参考类图-2"><a href="#参考类图-2" class="headerlink" title="参考类图"></a>参考类图</h2><blockquote>
+<p><img data-fancybox="gallery" data-sizes="auto" data-src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fimg.mukewang.com%2F59f248160001fdee12800720.jpg&refer=http%3A%2F%2Fimg.mukewang.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1643700881&t=fcf2ea4007dfaf563b3f3aa2160f9b56" alt="参考类图" class="lazyload"></p>
+</blockquote>
+<h2 id="Q-amp-A-2"><a href="#Q-amp-A-2" class="headerlink" title="Q&amp;A"></a>Q&amp;A</h2><ol>
+<li>抽象工厂模式有什么优点?<ul>
+<li>当一个产品族中的多个对象被设计成一起工作时，它能保证客户端始终只使用同一个产品族中的对象。</li>
+</ul>
+</li>
+<li>抽象工厂模式有什么缺点?<ul>
+<li>抽象工厂发生变化可能是会导致大量的具体类变化，违背了面向接口编程而非面向实现编程的原则。</li>
+<li>结构太复杂了。</li>
+</ul>
+</li>
+</ol>
+
+  </article>
+
+  
+      
+    <div class="nexmoe-post-copyright">
+        <strong>本文作者：</strong>深红的游戏博客<br>
+        <strong>本文链接：</strong><a href="http://example.com/2022/01/02/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E4%B8%89%E4%B8%AA%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F/" title="http:&#x2F;&#x2F;example.com&#x2F;2022&#x2F;01&#x2F;02&#x2F;%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0&#x2F;%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F&#x2F;%E4%B8%89%E4%B8%AA%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F&#x2F;" target="_blank" rel="noopener">http:&#x2F;&#x2F;example.com&#x2F;2022&#x2F;01&#x2F;02&#x2F;%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0&#x2F;%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F&#x2F;%E4%B8%89%E4%B8%AA%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F&#x2F;</a><br>
+        
+            <strong>版权声明：</strong>本文采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/cn/deed.zh" target="_blank">CC BY-NC-SA 3.0 CN</a> 协议进行许可
+        
+    </div>
+
+
+  
+  
+  <div class="nexmoe-post-meta nexmoe-rainbow">
+    
+        <a class="nexmoefont icon-appstore-fill -link" href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">学习笔记</a>
+    
+    
+        <a class="nexmoefont icon-tag-fill -none-link" href="/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" rel="tag">学习笔记</a> <a class="nexmoefont icon-tag-fill -none-link" href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" rel="tag">设计模式</a>
+    
+</div>
+
+  
+      <div class="nexmoe-post-footer">
+          <section class="nexmoe-comment">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@latest/dist/gitalk.min.css">
+<div id="gitalk"></div>
+<script src="https://cdn.jsdelivr.net/npm/gitalk@latest/dist/gitalk.min.js"></script>
+<script type="text/javascript">
+    var gitalk = new Gitalk({
+        clientID: '80b2453b6d5f37ad6225',
+        clientSecret: '43e99fa852795c9a7b3eb924b2558c64b84bbdeb',
+        id: window.location.pathname,
+        repo: 'nexmoe.github.io',
+        owner: 'nexmoe',
+        admin: 'nexmoe'
+    })
+    gitalk.render('gitalk')
+</script>
+</section>
+      </div>
+  
+</div>
+            <div class="nexmoe-post-right">
+              <div class="nexmoe-fixed">
+                  <div class="nexmoe-tool"> 
+                    
+                      
+                        
+                          
+                          
+                              <button class="mdui-fab catalog" style="overflow:unset;">
+                                  <i class="nexmoefont icon-i-catalog"></i>
+                                  <div class="nexmoe-toc">
+                                      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%AE%80%E5%8D%95%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F"><span class="toc-number">1.</span> <span class="toc-text">简单工厂模式</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%94%A8%E9%80%94"><span class="toc-number">1.1.</span> <span class="toc-text">用途</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A6%82%E5%BF%B5"><span class="toc-number">1.2.</span> <span class="toc-text">概念</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E7%B1%BB%E5%9B%BE"><span class="toc-number">1.3.</span> <span class="toc-text">参考类图</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AF%B4%E6%98%8E"><span class="toc-number">1.3.1.</span> <span class="toc-text">说明</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Q-amp-A"><span class="toc-number">1.4.</span> <span class="toc-text">Q&amp;A</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F"><span class="toc-number">2.</span> <span class="toc-text">工厂模式</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#GOF-%E5%AE%9A%E4%B9%89"><span class="toc-number">2.1.</span> <span class="toc-text">GOF 定义</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A6%82%E5%BF%B5-1"><span class="toc-number">2.2.</span> <span class="toc-text">概念</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E7%B1%BB%E5%9B%BE-1"><span class="toc-number">2.3.</span> <span class="toc-text">参考类图</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Q-amp-A-1"><span class="toc-number">2.4.</span> <span class="toc-text">Q&amp;A</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%8A%BD%E8%B1%A1%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F"><span class="toc-number">3.</span> <span class="toc-text">抽象工厂模式</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#GOF-%E5%AE%9A%E4%B9%89-1"><span class="toc-number">3.1.</span> <span class="toc-text">GOF 定义</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A6%82%E5%BF%B5-2"><span class="toc-number">3.2.</span> <span class="toc-text">概念</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E7%B1%BB%E5%9B%BE-2"><span class="toc-number">3.3.</span> <span class="toc-text">参考类图</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Q-amp-A-2"><span class="toc-number">3.4.</span> <span class="toc-text">Q&amp;A</span></a></li></ol></li></ol>
+                                  </div>
+                              </button>
+                          
+                          
+                      
+                    
+                      <a href="#nexmoe-content" class="toc-link" aria-label="回到顶部" title="top"><button class="mdui-fab mdui-ripple"><i class="nexmoefont icon-caret-top"></i></button></a>
+                  </div>
+              </div>
+            </div>
+        </div>
+    </div>
+     
+    <div id="nexmoe-search-space">
+        <div class="search-container">
+            <div class="search-header">
+                <div class="search-input-container">
+                    <input class="search-input" type="text" placeholder="搜索" oninput="sinput();">
+                </div>
+                <a class="search-close" onclick="sclose();">×</a>
+            </div>
+            <div class="search-body"></div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/combine/npm/lazysizes@5.1.0/lazysizes.min.js,npm/mdui@0.4.3/dist/js/mdui.min.js?v=1"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+
+ 
+
+<script async src="/js/app.js?v=1641139011604"></script>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/js/jquery.justifiedGallery.min.js"></script>
+<script>
+	$(".justified-gallery").justifiedGallery({
+		rowHeight: 160,
+		margins: 10,
+	});
+</script>
+
+
+    
+
+
+
+
+
+</body>
+
+</html>
