@@ -13,26 +13,26 @@
     
 
     <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
-    <meta name="description" content="解释器模式GOF 定义&amp;emsp;&amp;emsp;给定一个语言，用它的语法做一个解释器，这个解释器会把得到的东西翻译成符合这个语言语法的东西。 概念&amp;emsp;&amp;emsp;这个模式的目的不是让你写解释器，而是让你能够比较自由去处理输入的句子&amp;emsp;&amp;emsp;在深入了解这个模式之前，最好先去了解语言，句子，语法的概念。想快速理解这些概念可以看下《上下文无关文法》。&amp;esmp;&amp;emsp;这个模式通">
+    <meta name="description" content="解释器模式GOF 定义&amp;emsp;&amp;emsp;给定一个语言，用它的语法做一个解释器，这个解释器会把得到的东西翻译成符合这个语言语法的东西。 概念&amp;emsp;&amp;emsp;这个模式的目的不是让你写解释器，而是让你能够比较自由去处理输入的句子&amp;emsp;&amp;emsp;在深入了解这个模式之前，最好先去了解语言，句子，语法的概念。想快速理解这些概念可以看下《上下文无关文法》。&amp;emsp;&amp;emsp;这个模式通">
 <meta property="og:type" content="article">
 <meta property="og:title" content="解释器模式(笔记)">
 <meta property="og:url" content="http://example.com/2021/12/24/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E8%A7%A3%E9%87%8A%E5%99%A8%E6%A8%A1%E5%BC%8F/index.html">
 <meta property="og:site_name" content="深红的游戏博客">
-<meta property="og:description" content="解释器模式GOF 定义&amp;emsp;&amp;emsp;给定一个语言，用它的语法做一个解释器，这个解释器会把得到的东西翻译成符合这个语言语法的东西。 概念&amp;emsp;&amp;emsp;这个模式的目的不是让你写解释器，而是让你能够比较自由去处理输入的句子&amp;emsp;&amp;emsp;在深入了解这个模式之前，最好先去了解语言，句子，语法的概念。想快速理解这些概念可以看下《上下文无关文法》。&amp;esmp;&amp;emsp;这个模式通">
+<meta property="og:description" content="解释器模式GOF 定义&amp;emsp;&amp;emsp;给定一个语言，用它的语法做一个解释器，这个解释器会把得到的东西翻译成符合这个语言语法的东西。 概念&amp;emsp;&amp;emsp;这个模式的目的不是让你写解释器，而是让你能够比较自由去处理输入的句子&amp;emsp;&amp;emsp;在深入了解这个模式之前，最好先去了解语言，句子，语法的概念。想快速理解这些概念可以看下《上下文无关文法》。&amp;emsp;&amp;emsp;这个模式通">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fjavaquan.com%2Ffile%2Fimage%2F20190113%2F2019011318000179028836.JPG&refer=http%3A%2F%2Fjavaquan.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1642942470&t=42e36df3ebf391e205d517635691eda3">
 <meta property="article:published_time" content="2021-12-23T16:00:00.000Z">
-<meta property="article:modified_time" content="2021-12-24T13:50:26.261Z">
+<meta property="article:modified_time" content="2022-01-03T08:29:03.273Z">
 <meta property="article:author" content="深红的游戏博客">
 <meta property="article:tag" content="设计模式">
 <meta property="article:tag" content="学习笔记">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fjavaquan.com%2Ffile%2Fimage%2F20190113%2F2019011318000179028836.JPG&refer=http%3A%2F%2Fjavaquan.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1642942470&t=42e36df3ebf391e205d517635691eda3">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/combine/npm/highlight.js@9.15.8/styles/atom-one-dark.css,npm/justifiedGallery@3.8.1/dist/css/justifiedGallery.min.css,gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css,npm/hexo-theme-nexmoe@latest/source/lib/mdui_043tiny/css/mdui.css,npm/hexo-theme-nexmoe@latest/source/lib/iconfont/iconfont.css?v=233" crossorigin>
-    <link rel="stylesheet" href="/css/style.css?v=1641196612115">
+    <link rel="stylesheet" href="/css/style.css?v=1641198592247">
      
     
-    <link rel="stylesheet" href="/lib/iconfont/iconfont.css?v=1641196612115">
+    <link rel="stylesheet" href="/lib/iconfont/iconfont.css?v=1641198592247">
     
         <link rel="stylesheet" href="/custom.css">
     
@@ -230,7 +230,7 @@
       
 
       <h1 id="解释器模式"><a href="#解释器模式" class="headerlink" title="解释器模式"></a>解释器模式</h1><h2 id="GOF-定义"><a href="#GOF-定义" class="headerlink" title="GOF 定义"></a>GOF 定义</h2><p>&emsp;&emsp;给定一个语言，用它的语法做一个解释器，这个解释器会把得到的东西翻译成符合这个语言语法的东西。</p>
-<h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><p>&emsp;&emsp;<strong>这个模式的目的不是让你写解释器，而是让你能够比较自由去处理输入的句子</strong><br>&emsp;&emsp;在深入了解这个模式之前，最好先去了解<strong>语言，句子，语法</strong>的概念。想快速理解这些概念可以看下<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/398264514">《上下文无关文法》</a>。<br>&esmp;&emsp;这个模式通常用来解决怎么样<strong>用一个语言去评估一个句子</strong>的问题。因此我们在使用这个模式之前需要了解这个<strong>语言的语法</strong>，而在这些<strong>语法</strong>的基础上我们制作一个解释器。<br>&emsp;&emsp;<strong>其在语法简单的时候效果最好，而不太适用与语法过于复杂的情景</strong>。在这个模式中，可能每个类就对应着一种规则，因此规则太复杂的时候，我们会需要编写大量的规则类。<br>&emsp;&emsp;<strong>用组合的方式去处理规则大部分时候优于每种情况特殊处理</strong>。<br>&emsp;&emsp;常见的类似应用就是编译器。</p>
+<h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><p>&emsp;&emsp;<strong>这个模式的目的不是让你写解释器，而是让你能够比较自由去处理输入的句子</strong><br>&emsp;&emsp;在深入了解这个模式之前，最好先去了解<strong>语言，句子，语法</strong>的概念。想快速理解这些概念可以看下<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/398264514">《上下文无关文法》</a>。<br>&emsp;&emsp;这个模式通常用来解决怎么样<strong>用一个语言去评估一个句子</strong>的问题。因此我们在使用这个模式之前需要了解这个<strong>语言的语法</strong>，而在这些<strong>语法</strong>的基础上我们制作一个解释器。<br>&emsp;&emsp;<strong>其在语法简单的时候效果最好，而不太适用与语法过于复杂的情景</strong>。在这个模式中，可能每个类就对应着一种规则，因此规则太复杂的时候，我们会需要编写大量的规则类。<br>&emsp;&emsp;<strong>用组合的方式去处理规则大部分时候优于每种情况特殊处理</strong>。<br>&emsp;&emsp;常见的类似应用就是编译器。</p>
 <h2 id="参考类图"><a href="#参考类图" class="headerlink" title="参考类图"></a>参考类图</h2><blockquote>
 <p><img data-fancybox="gallery" data-sizes="auto" data-src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fjavaquan.com%2Ffile%2Fimage%2F20190113%2F2019011318000179028836.JPG&refer=http%3A%2F%2Fjavaquan.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1642942470&t=42e36df3ebf391e205d517635691eda3" alt="参考类图" class="lazyload"></p>
 </blockquote>
@@ -356,7 +356,7 @@
 
  
 
-<script async src="/js/app.js?v=1641196612122"></script>
+<script async src="/js/app.js?v=1641198592252"></script>
 
 
 
